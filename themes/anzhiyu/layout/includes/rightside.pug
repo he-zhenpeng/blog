@@ -1,0 +1,63 @@
+- const { readmode, translate, darkmode, aside, chat_btn } = theme
+mixin rightsideItem(array)
+  each item in array
+    case item
+      when 'readmode'
+        if is_post() && readmode
+          button#readmode(type="button" title=_p('rightside.readmode_title'))
+            i.anzhiyufont.anzhiyu-icon-book-open
+      when 'translate'
+        if translate.enable
+          button#translateLink(type="button" title=_p('rightside.translate_title'))= translate.default
+      when 'darkmode'
+        if darkmode.enable && darkmode.button
+          button#darkmode(type="button" title=_p('rightside.night_mode_title'))
+            i.anzhiyufont.anzhiyu-icon-circle-half-stroke
+      when 'hideAside'
+        if aside.enable && aside.button && page.aside !== false
+          button#hide-aside-btn(type="button" title=_p('rightside.aside'))
+            i.anzhiyufont.anzhiyu-icon-arrows-left-right
+      when 'toc'
+        if showToc
+          button#mobile-toc-button.close(type="button" title=_p("rightside.toc"))
+            i.anzhiyufont.anzhiyu-icon-list-ul
+      when 'chat'
+        if chat_btn && (theme.chatra.enable || theme.tidio.enable || theme.daovoice.enable || theme.crisp.enable)
+          button#chat-btn(type="button" title=_p("rightside.chat"))
+            i.anzhiyufont.anzhiyu-icon-comment-sms
+      when 'comment'
+        if commentsJsLoad
+          a#to_comment(href="#post-comment" title=_p("rightside.scroll_to_comment"))
+            i.anzhiyufont.anzhiyu-icon-comments
+        if theme.comment_barrage_config && theme.comment_barrage_config.enable
+          a#switch-commentBarrage(href="javascript:anzhiyu.switchCommentBarrage();" title="开关弹幕")
+            i.anzhiyufont.anzhiyu-icon-danmu
+
+#rightside
+  - const { enable, hide, show } = theme.rightside_item_order
+  - const hideArray = enable ? hide && hide.split(',') : ['readmode','translate','darkmode','hideAside']
+  - const showArray = enable ? show && show.split(',') : ['toc','chat','comment']
+
+  
+  #rightside-config-hide
+    if hideArray
+      +rightsideItem(hideArray)
+  #rightside-config-show
+    if enable
+      if hide
+        button#rightside-config(type="button" title=_p("rightside.setting"))
+         i.anzhiyufont.anzhiyu-icon-gear
+    else
+      if is_post()
+        if (readmode || translate.enable || (darkmode.enable && darkmode.button))
+          button#rightside-config(type="button" title=_p("rightside.setting"))
+            i.anzhiyufont.anzhiyu-icon-gear
+      else if translate.enable || (darkmode.enable && darkmode.button)
+        button#rightside-config(type="button" title=_p("rightside.setting"))
+          i.anzhiyufont.anzhiyu-icon-gear
+
+    if showArray
+      +rightsideItem(showArray)
+
+    button#go-up(type="button" title=_p("rightside.back_to_top"))
+      i.anzhiyufont.anzhiyu-icon-arrow-up

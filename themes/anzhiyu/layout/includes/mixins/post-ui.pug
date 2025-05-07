@@ -1,0 +1,122 @@
+- let maxDate = 0
+each item in site.posts.data
+  if item.date > maxDate
+    - maxDate = item.date
+mixin postUI(posts)
+  each article , index in page.posts.data
+    - let link = article.link || article.path
+    div(class = (index === 0 ? 'recent-post-item lastestpost-item' : 'recent-post-item') onclick=`pjax.loadUrl('${url_for(link)}')`)
+      -
+        let title = article.title || _p('no_title')
+        const position = theme.cover.position
+        let leftOrRight = position === 'both'
+          ? index%2 == 0 ? 'left' : 'right'
+          : position === 'left' ? 'left' : 'right'
+        let post_cover = article.cover
+        let no_cover = article.cover === false || !theme.cover.index_enable ? 'no-cover' : ''
+      -
+      - const new_post = is_current('/') && (maxDate === article.date)
+
+      if post_cover && theme.cover.index_enable
+        .post_cover(class=leftOrRight)
+          a(href=url_for(link) title=title style='display: flex;height: 100%;')
+            img.post_bg(src=url_for(post_cover) onerror=`this.onerror=null;this.src='`+ url_for(theme.error_img.post_page) + `'` alt=title style='pointer-events: none')
+
+      .recent-post-info(class=no_cover)
+        .recent-post-info-top
+          .recent-post-info-top-tips
+            if (is_home() && (article.top || article.sticky > 0))
+              span.article-meta.sticky-warp
+                i.anzhiyufont.anzhiyu-icon-thumbtack.sticky
+                span.sticky= _p('sticky')
+            if (theme.post_meta.page.categories && article.categories.data.length > 0)
+              each item, index in article.categories.data
+                .article-categories-original=item.name
+            if new_post
+              span.newPost 最新
+            a.unvisited-post(href=url_for(link) title=title) 未读
+          a.article-title(href=url_for(link) title=title)= title
+        .article-meta-wrap
+          if (theme.post_meta.page.date_type)
+            span.post-meta-date
+              if (theme.post_meta.page.date_type === 'both')
+                i.anzhiyufont.anzhiyu-icon-calendar-alt(style=`${theme.post_meta.page.date_format==="simple" ? "display:none":""}`)
+                span.article-meta-label=_p('post.created')
+                time.post-meta-date-created(datetime=date_xml(article.date) title=_p('post.created') + ' ' + full_date(article.date) time=full_date(article.date))=date(article.date, config.date_format)
+                span.article-meta-separator
+                i.anzhiyufont.anzhiyu-icon-history(style=`font-size: 15px; ${theme.post_meta.page.date_format==="simple" ? "display:none":""}`)
+                span.article-meta-label=_p('post.updated')
+                time.post-meta-date-updated(datetime=date_xml(article.updated) title=_p('post.updated') + ' ' + full_date(article.updated) time=full_date(article.updated))=date(article.updated, config.date_format)
+              else
+                - let data_type_updated = theme.post_meta.page.date_type === 'updated'
+                - let date_type = data_type_updated ? 'updated' : 'date'
+                - let date_type_other = data_type_updated ? 'date' : 'updated'
+                - let date_icon = data_type_updated ? 'anzhiyu-icon-history' :'anzhiyu-icon-calendar-days'
+                - let date_title = data_type_updated ? _p('post.updated') : _p('post.created')
+                - let date_title_other = data_type_updated ? _p('post.created') : _p('post.updated')
+                i.anzhiyufont(class=date_icon style=`font-size: 15px; ${theme.post_meta.page.date_format==="simple" ? "display:none":""}`)
+                span.article-meta-label=date_title
+                time(datetime=date_xml(article[date_type]) title=date_title + ' ' + full_date(article[date_type])  time=full_date(article[date_type]))=date(article[date_type], config.date_format)
+                time(datetime=date_xml(article[date_type_other]), class="time_hidden", title=date_title_other + ' ' + full_date(article[date_type_other]) time=full_date(article[date_type_other]))=date(article[date_type_other], config.date_format)
+          if (theme.post_meta.page.tags && article.tags.data.length > 0)
+            span.article-meta.tags
+              each item, index in article.tags.data
+                a(href=url_for(item.path) event.cancelbubble onclick="window.event.cancelBubble=true;").article-meta__tags
+                  span 
+                    i.anzhiyufont.anzhiyu-icon-hashtag
+                    =item.name
+          
+          mixin countBlockInIndex
+            - needLoadCountJs = true
+            span.article-meta
+              span.article-meta-separator
+              i.anzhiyufont.anzhiyu-icon-comments
+              if block
+                block
+              span.article-meta-label= ' ' + _p('card_post_count')
+          
+          if theme.comments.card_post_count
+            case theme.comments.use[0]
+              when 'Valine'
+                +countBlockInIndex
+                  a(href=url_for(link) + '#post-comment')
+                    span.valine-comment-count(data-xid=url_for(link))
+                      i.anzhiyufont.anzhiyu-icon-spinner.anzhiyu-spin
+              when 'Waline'
+                +countBlockInIndex
+                  a(href=url_for(link) + '#post-comment')
+                    span.waline-comment-count(id=url_for(link))
+                      i.anzhiyufont.anzhiyu-icon-spinner.anzhiyu-spin
+              when 'Twikoo'
+                +countBlockInIndex
+                  a.twikoo-count(href=url_for(link) + '#post-comment' tabindex="-1")
+                    i.anzhiyufont.anzhiyu-icon-spinner.anzhiyu-spin
+              when 'Artalk'
+                +countBlockInIndex
+                  a(href=url_for(link) + '#post-comment')
+                    span.artalk-count(data-page-key=url_for(link))
+                      i.anzhiyufont.anzhiyu-icon-spinner.anzhiyu-spin
+
+        //- Display the article introduction on homepage
+        case theme.index_post_content.method
+          when false
+            - break
+          when 1
+            .content!= article.description
+          when 2
+            if article.description
+              .content!= article.description
+            else
+              - const content = strip_html(article.content)
+              - let expert = content.substring(0, theme.index_post_content.length) 
+              - content.length > theme.index_post_content.length ? expert += ' ...' : ''
+              .content!= expert
+          default
+            - const content = strip_html(article.content)
+            - let expert = content.substring(0, theme.index_post_content.length) 
+            - content.length > theme.index_post_content.length ? expert += ' ...' : ''
+            .content!= expert
+
+    if theme.ad && theme.ad.index
+      if (index + 1) % 3 == 0
+        .recent-post-item.ads-wrap!=theme.ad.index

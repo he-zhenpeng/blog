@@ -1,0 +1,20 @@
+if theme.aside.card_author.enable
+  .card-widget.card-info
+    .card-content
+      if theme.author_status.enable
+        .author-info__sayhi#author-info__sayhi(onclick="anzhiyu.changeSayHelloText()")
+      .author-info-avatar
+        img.avatar-img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
+        if theme.author_status.enable && theme.author_status.statusImg
+          .author-status
+            img(src=url_for(theme.author_status.statusImg) class='g-status' alt="status")
+
+      .author-info__description!= theme.aside.card_author.description || config.description
+
+      if(theme.social)
+        .author-info__bottom-group
+          a.author-info__bottom-group-left(href=url_for(theme.aside.card_author.name_link))
+            h1.author-info__name=config.author
+            .author-info__desc=config.subtitle
+          .card-info-social-icons.is-center
+            !=fragment_cache('social', function(){return partial('includes/header/social')}) 

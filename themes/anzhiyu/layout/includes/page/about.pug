@@ -1,0 +1,430 @@
+if site.data.about
+  - let aboutData = site.data.about
+  each item in aboutData
+    - let subtitle = item.subtitle || config.subtitle
+    - let avatarImg = item.avatarImg || theme.avatar.img
+    - let aboutName = item.name || theme.author
+    - let aboutDescription = item.description || config.description
+    - let helloAbout = item.helloAbout
+    - let skillsTips = item.skillsTips
+    - let careers = item.careers
+    - let crrList = careers.list
+    - let crrItem = careers.item
+    - let avatarSkills = item.avatarSkills
+    #about-page
+      .author-box
+        if avatarSkills
+          .author-tag-left
+            each item in avatarSkills.left
+              span.author-tag=item
+        .author-img
+          img.no-lightbox(src=url_for(avatarImg) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
+        if avatarSkills
+          .author-tag-right
+            each item in avatarSkills.right
+              span.author-tag=item
+      p.p.center.logo.large 关于我
+      p.p.center.small=subtitle
+      .author-content
+        .author-content-item.myInfoAndSayHello
+          .title1 你好，很高兴认识你👋
+          .title2
+            | 我叫 
+            span.inline-word=aboutName
+          .title1=aboutDescription
+        .aboutsiteTips.author-content-item
+          - let { tips, title1, title2, word } = item.aboutsiteTips
+          .author-content-item-tips= tips
+          h2
+            = title1
+            br
+            = title2
+            .mask
+              each wordItem, index in word
+                if index < word.length - 2
+                  span(class=(index === 0 ? 'first-tips' : ''))= wordItem
+              span(data-up)= word[word.length - 2]
+              |  
+              span(data-show)= word[word.length - 1]
+      
+      .hello-about
+        .cursor(style='translate:none;rotate:none;scale:none;transform:translate(721px,180px)')
+        .shapes
+          .shape.shape-1(style='translate:none;rotate:none;scale:none;transform:translate(721px,180px)')
+          .shape.shape-2(style='translate:none;rotate:none;scale:none;transform:translate(721px,180px)')
+          .shape.shape-3(style='translate:none;rotate:none;scale:none;transform:translate(721px,180px)')
+        .content
+          h1=helloAbout
+      
+      .author-content
+        .author-content-item.skills
+          .card-content
+            .author-content-item-tips=skillsTips.tips
+            span.author-content-item-title=skillsTips.title
+            .skills-style-group
+              include ../anzhiyu/tags-group-all.pug
+              if site.data.creativity
+                .skills-list
+                  each i in site.data.creativity
+                    each item, index in i.creativity_list
+                      .skill-info
+                        .skill-icon(style=`background: ${item.color}`)
+                          img.no-lightbox(title=item.name, src=item.icon, alt=item.name)
+                        .skill-name
+                          span=item.name 
+                  .etc ...
+        .author-content-item.careers
+          .card-content
+            .author-content-item-tips=careers.tips
+            span.author-content-item-title=careers.title
+            .careers-group
+              if crrList
+                each career in crrList
+                  .career-item
+                    .circle(style=`background:${career.color ? career.color : "#357ef5"}`)
+                    .name=career.desc
+              else
+                .careers-none
+            if careers.img
+              img.author-content-img.no-lightbox(alt=careers.tips, src=url_for(careers.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'`)
+      
+      .author-content
+        if theme.LA.enable
+          - let cover = item.statistic.cover
+          .about-statistic.author-content-item(style=`background: url(${cover}) top / cover no-repeat;`)
+            .card-content
+              .author-content-item-tips 数据
+              span.author-content-item-title 访问统计
+              #statistic
+              .post-tips
+                | 统计信息来自 
+                a(href='https://invite.51.la/1NzKqTeb?target=V6', target='_blank', rel='noopener nofollow') 51la网站统计
+              .banner-button-group
+                - let link = item.statistic.link
+                - let text = item.statistic.text
+                a.banner-button(onclick=`pjax.loadUrl("${link}")`)
+                  i.anzhiyufont.anzhiyu-icon-arrow-circle-right
+                  |  
+                  span.banner-button-text=text
+        .author-content-item-group.column.mapAndInfo
+          - let mapBackground = item.map.background
+          - let mapBackgroundDark = item.map.backgroundDark
+          style.
+            .author-content-item.map {
+              background-image: url(#{mapBackground});
+            }
+            [data-theme='dark'] .author-content-item.map {
+              background-image: url(#{mapBackgroundDark});
+            }
+          .author-content-item.map.single
+            - let mapTitle = item.map.title
+            - let mapStrengthenTitle = item.map.StrengthenTitle
+            span.map-title=mapTitle
+              b=mapStrengthenTitle
+          .author-content-item.selfInfo.single
+            - let { selfInfoTips1, selfInfoContentYear, selfInfoTips2, selfInfoContent2, selfInfoTips3, selfInfoContent3 } = item.selfInfo
+            div
+              span.selfInfo-title=selfInfoTips1
+              |  
+              span.selfInfo-content#selfInfo-content-year(style='color:#43a6c6')=selfInfoContentYear
+            div
+              span.selfInfo-title=selfInfoTips2
+              |  
+              span.selfInfo-content(style='color:#c69043')=selfInfoContent2
+            div
+              span.selfInfo-title=selfInfoTips3
+              |  
+              span.selfInfo-content(style='color:#b04fe6')=selfInfoContent3
+      
+      .author-content
+        .author-content-item.personalities
+          - let {author_name, personality_type, photo_url, personality_img, name_url, personality_type_color} = item.personalities
+          .author-content-item-tips 性格
+          span.author-content-item-title= author_name
+          .title2(style=`color:${personality_type_color ? personality_type_color : "#ac899c"}`)= personality_type
+          .post-tips
+            | 在 
+            a(href='https://www.16personalities.com/', target='_blank', rel='noopener nofollow') 16personalities
+            |  了解更多关于 
+            a(target='_blank', rel='noopener external nofollow', href= name_url)= author_name
+          .image
+            img.no-lightbox(src=url_for(personality_img), alt='人格')
+        .author-content-item.myphoto
+          img.author-content-img.no-lightbox(alt='自拍', src=url_for(photo_url))
+      
+      .author-content
+        .author-content-item.maxim
+          - let {maxim_tips, maxim_top, maxim_bottom} = item.maxim
+          .author-content-item-tips=maxim_tips
+          span.maxim-title
+            span(style='opacity:.6;margin-bottom:8px')=maxim_top
+            |  
+            span=maxim_bottom
+        .author-content-item.buff
+          .card-content
+          - let {buff_tips, buff_top, buff_bottom} = item.buff
+            .author-content-item-tips=buff_tips
+            span.buff-title
+              span(style='opacity:.6;margin-bottom:8px')=buff_top
+              |  
+              span=buff_bottom
+          .card-background-icon
+            i.anzhiyufont.anzhiyu-icon-dice-d20
+
+      .author-content
+        - let {game_tips, game_title, game_uid, game_bg} = item.game
+        .author-content-item.game-yuanshen(style=`background: url(${game_bg}) top / cover no-repeat;`)
+          .card-content
+            .author-content-item-tips=game_tips
+            span.author-content-item-title=game_title
+            .content-bottom
+              .icon-group
+                .loading-bar(role='presentation', aria-hidden='true' style=`${game_title != "原神" ? "display: none": ""}`)
+              .tips.game-yuanshen-uid=game_uid
+        .author-content-item.comic-content
+          .card-content
+            - let {comic_tips, comic_title, comic_list} = item.comic
+            .author-content-item-tips=comic_tips
+            .author-content-item-title=comic_title
+            .comic-box
+              if comic_list
+                each i in comic_list
+                  a.comic-item(href=i.href, target="_blank", title=i.name)
+                    .comic-item-cover
+                      img(src=i.cover, alt=i.name)
+      
+      .author-content
+        - let {music_tips, music_title, music_link, music_bg} = item.music
+        - let {like_tips, like_title, like_bottom, like_bg} = item.like
+        .author-content-item.like-technology(style=`background: url(${like_bg}) top / cover no-repeat;`)
+          .card-content
+            .author-content-item-tips=like_tips
+            span.author-content-item-title=like_title
+            .content-bottom
+              .tips=like_bottom
+        .author-content-item.like-music(style=`background: url(${music_bg}) top / cover no-repeat;`)
+          .card-content
+            .author-content-item-tips=music_tips
+            span.author-content-item-title=music_title
+            .content-bottom
+              .tips=`跟 ${aboutName} 一起欣赏更多音乐`
+            .banner-button-group
+              a.banner-button(onclick=`pjax.loadUrl("${music_link}")`)
+                i.anzhiyufont.anzhiyu-icon-arrow-circle-right
+                |  
+                span.banner-button-text 更多推荐
+
+      if page.content
+        .author-content
+          .create-site-post.author-content-item.single
+            != page.content
+        
+      - let rawData = item.reward_list
+      if rawData
+        - let sortedByDate = rawData.slice().sort((a, b) => new Date(b.datatime) - new Date(a.datatime));
+        .author-content
+          .author-content-item.single.reward#about-reward
+            .author-content-item-tips 致谢
+            span.author-content-item-title 赞赏名单
+            .author-content-item-description 感谢因为有你们，让我更加有创作的动力。
+              .reward-list-all
+                - let reward_list_amount = item.reward_list.sort((a,b)=>b.amount -  a.amount)
+                each item, index in reward_list_amount
+                  .reward-list-item
+                    .reward-list-item-name=item.name
+                    .reward-list-bottom-group
+                      if item.amount >= 50
+                        .reward-list-item-money(style='background:var(--anzhiyu-yellow)')=`¥${item.amount}`
+                      else 
+                        .reward-list-item-money=`¥${item.amount + (item.suffix ? item.suffix : "")}`
+                      .datatime.reward-list-item-time(datatime=item.datatime)=new Date(item.datatime).toISOString().slice(0, -14)
+              .reward-list-updateDate
+                | 最新更新时间： 
+                time.datatime.reward-list-updateDate-time(datatime=sortedByDate[0].datatime)=new Date(sortedByDate[0].datatime).toISOString().slice(0, -14)
+            .about-reward
+              #con
+              #TA-con(onclick="anzhiyu.rewardShowConsole()")
+                #text-con
+                  #linght
+                  #TA 为TA充电
+              #tube-con
+                svg(viewBox='0 0 1028 385', fill='none', xmlns='http://www.w3.org/2000/svg')
+                  path(d='M1 77H234.226L307.006 24H790', stroke='#e5e9ef', stroke-width='20')
+                  path(d='M0 140H233.035L329.72 71H1028', stroke='#e5e9ef', stroke-width='20')
+                  path(d='M1 255H234.226L307.006 307H790', stroke='#e5e9ef', stroke-width='20')
+                  path(d='M0 305H233.035L329.72 375H1028', stroke='#e5e9ef', stroke-width='20')
+                  rect(y='186', width='236', height='24', fill='#e5e9ef')
+                  ellipse(cx='790', cy='25.5', rx='25', ry='25.5', fill='#e5e9ef')
+                  circle(r='14', transform='matrix(1 0 0 -1 790 25)', fill='white')
+                  ellipse(cx='790', cy='307.5', rx='25', ry='25.5', fill='#e5e9ef')
+                  circle(r='14', transform='matrix(1 0 0 -1 790 308)', fill='white')
+                #mask
+                  svg(viewBox='0 0 1028 385', fill='none', xmlns='http://www.w3.org/2000/svg')
+                    path(d='M1 77H234.226L307.006 24H790', stroke='#f25d8e', stroke-width='20')
+                    path(d='M0 140H233.035L329.72 71H1028', stroke='#f25d8e', stroke-width='20')
+                    path(d='M1 255H234.226L307.006 307H790', stroke='#f25d8e', stroke-width='20')
+                    path(d='M0 305H233.035L329.72 375H1028', stroke='#f25d8e', stroke-width='20')
+                    rect(y='186', width='236', height='24', fill='#f25d8e')
+                    ellipse(cx='790', cy='25.5', rx='25', ry='25.5', fill='#f25d8e')
+                    circle(r='14', transform='matrix(1 0 0 -1 790 25)', fill='white')
+                    ellipse(cx='790', cy='307.5', rx='25', ry='25.5', fill='#f25d8e')
+                    circle(r='14', transform='matrix(1 0 0 -1 790 308)', fill='white')
+                #orange-mask
+                  svg(viewBox='0 0 1028 385', fill='none', xmlns='http://www.w3.org/2000/svg')
+                    path(d='M1 77H234.226L307.006 24H790', stroke='#ffd52b', stroke-width='20')
+                    path(d='M0 140H233.035L329.72 71H1028', stroke='#ffd52b', stroke-width='20')
+                    path(d='M1 255H234.226L307.006 307H790', stroke='#ffd52b', stroke-width='20')
+                    path(d='M0 305H233.035L329.72 375H1028', stroke='#ffd52b', stroke-width='20')
+                    rect(y='186', width='236', height='24', fill='#ffd52b')
+                    ellipse(cx='790', cy='25.5', rx='25', ry='25.5', fill='#ffd52b')
+                    circle(r='14', transform='matrix(1 0 0 -1 790 25)', fill='white')
+                    ellipse(cx='790', cy='307.5', rx='25', ry='25.5', fill='#ffd52b')
+                    circle(r='14', transform='matrix(1 0 0 -1 790 308)', fill='white')
+                p#people
+                  | 共
+                  b=item.reward_list.length
+                  | 人
+
+
+    script(src=url_for(theme.asset.countup_js))
+    - const ck = theme.LA.ck
+    script(defer).
+      function initAboutPage() {
+        fetch("https://v6-widget.51.la/v6/#{ck}/quote.js")
+          .then(res => res.text())
+          .then(data => {
+            let title = ["最近活跃", "今日人数", "今日访问", "昨日人数", "昨日访问", "本月访问", "总访问量"];
+            let num = data.match(/(<\/span><span>).*?(\/span><\/p>)/g);
+
+            num = num.map(el => {
+              let val = el.replace(/(<\/span><span>)/g, "");
+              let str = val.replace(/(<\/span><\/p>)/g, "");
+              return str;
+            });
+
+            let statisticEl = document.getElementById("statistic");
+
+            // 自定义不显示哪个或者显示哪个，如下为不显示 最近活跃访客 和 总访问量
+            let statistic = [];
+            for (let i = 0; i < num.length; i++) {
+              if (!statisticEl) return;
+              if (i == 0) continue;
+              statisticEl.innerHTML +=
+                "<div><span>" + title[i] + "</span><span id=" + title[i] + ">" + num[i] + "</span></div>";
+              queueMicrotask(() => {
+                statistic.push(
+                  new CountUp(title[i], 0, num[i], 0, 2, {
+                    useEasing: true,
+                    useGrouping: true,
+                    separator: ",",
+                    decimal: ".",
+                    prefix: "",
+                    suffix: "",
+                  })
+                );
+              });
+            }
+
+            let statisticElement = document.querySelector(".about-statistic.author-content-item");
+            function statisticUP() {
+              if (!statisticElement) return;
+
+              const callback = (entries, observer) => {
+                entries.forEach(entry => {
+                  if (entry.isIntersecting) {
+                    for (let i = 0; i < num.length; i++) {
+                      if (i == 0) continue;
+                      queueMicrotask(() => {
+                        statistic[i - 1].start();
+                      });
+                    }
+                    observer.disconnect(); // 停止观察元素，因为不再需要触发此回调
+                  }
+                });
+              };
+
+              const options = {
+                root: null,
+                rootMargin: "0px",
+                threshold: 0
+              };
+              const observer = new IntersectionObserver(callback, options);
+              observer.observe(statisticElement);
+            }
+
+            const selfInfoContentYear = new CountUp("selfInfo-content-year", 0, #{selfInfoContentYear}, 0, 2, {
+              useEasing: true,
+              useGrouping: false,
+              separator: ",",
+              decimal: ".",
+              prefix: "",
+              suffix: "",
+            });
+
+            let selfInfoContentYearElement = document.querySelector(".author-content-item.selfInfo.single");
+            function selfInfoContentYearUp() {
+              if (!selfInfoContentYearElement) return;
+
+              const callback = (entries, observer) => {
+                entries.forEach(entry => {
+                  if (entry.isIntersecting) {
+                    selfInfoContentYear.start();
+                    observer.disconnect(); // 停止观察元素，因为不再需要触发此回调
+                  }
+                });
+              };
+
+              const options = {
+                root: null,
+                rootMargin: "0px",
+                threshold: 0
+              };
+              const observer = new IntersectionObserver(callback, options);
+              observer.observe(selfInfoContentYearElement);
+            }
+
+            selfInfoContentYearUp();
+            statisticUP()
+          });
+
+        var pursuitInterval = null;
+        pursuitInterval = setInterval(function () {
+          const show = document.querySelector("span[data-show]");
+          const next = show.nextElementSibling || document.querySelector(".first-tips");
+          const up = document.querySelector("span[data-up]");
+
+          if (up) {
+            up.removeAttribute("data-up");
+          }
+
+          show.removeAttribute("data-show");
+          show.setAttribute("data-up", "");
+
+          next.setAttribute("data-show", "");
+        }, 2000);
+
+        document.addEventListener("pjax:send", function () {
+          pursuitInterval && clearInterval(pursuitInterval);
+        });
+
+        var helloAboutEl = document.querySelector(".hello-about");
+        helloAboutEl.addEventListener("mousemove", evt => {
+          const mouseX = evt.offsetX;
+          const mouseY = evt.offsetY;
+          gsap.set(".cursor", {
+            x: mouseX,
+            y: mouseY,
+          });
+
+          gsap.to(".shape", {
+            x: mouseX,
+            y: mouseY,
+            stagger: -0.1,
+          });
+        });
+      }
+      if (typeof gsap === "object") {
+        initAboutPage()
+      } else {
+        getScript("!{url_for(theme.asset.gsap_js)}").then(initAboutPage);
+      }

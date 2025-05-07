@@ -1,0 +1,67 @@
+if site.data.essay
+  each i in site.data.essay
+    #essay_page
+      .author-content.author-content-item.essayPage.single(style = i.top_background ? `background: url(${i.top_background}) left 28% / cover no-repeat;` : "")
+        .card-content
+          .author-content-item-tips=i.title
+          span.author-content-item-title=i.subTitle
+          .content-bottom
+            .tips=i.tips
+          .banner-button-group
+            a.banner-button(href=i.buttonLink)
+              i.anzhiyufont.anzhiyu-icon-arrow-circle-right
+              span.banner-button-text=i.buttonText
+      #bber
+        section.timeline.page-1
+          ul#waterfall.list
+            each item, index in i.essay_list
+              if index < i.limit
+                li.bber-item
+                  .bber-content
+                    p.datacont= item.content
+                      if item.image
+                        .bber-container-img
+                          each iten, indey in item.image
+                            a.bber-content-img(href=url_for(item.image[indey]), target="_blank", data-fancybox="gallery", data-caption="")
+                              img(src=url_for(item.image[indey]))
+                          .bber-content-noimg
+                          .bber-content-noimg
+                          .bber-content-noimg
+                      if item.video
+                        .bber-container-img
+                          each iten, indey in item.video  
+                            if (item.video[indey].includes('player.bilibili.com'))
+                              div(style="position: relative; padding: 30% 45%;margin-top: 10px;margin-bottom: 10px;")
+                                iframe(style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;margin: 0;border-radius: 12px;border: var(--style-border);" src=url_for(item.video[indey]) scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true")
+                            else
+                              a.bber-content-video(href=url_for(item.video[indey]) data-fancybox="gallery", data-caption="")
+                                video(src=url_for(item.video[indey]))
+                          .bber-content-noimg
+                          .bber-content-noimg
+                          .bber-content-noimg
+                      if item.aplayer
+                        .bber-music
+                          meting-js(id=item.aplayer.id, server=item.aplayer.server, type="song", mutex="true",preload="none", theme="var(--anzhiyu-main)", data-lrctype="0", order="list")
+                  hr
+                  .bber-bottom
+                    .bber-info
+                      .bber-info-time
+                        - var datedata = new Date(item.date).toISOString()
+                        i.anzhiyufont.anzhiyu-icon-clock
+                        time.datatime(datetime= item.date)= datedata
+                      if item.link 
+                        a.bber-content-link(title="跳转到短文指引的链接", href=url_for(item.link), rel="external nofollow")
+                          i.anzhiyufont.anzhiyu-icon-link
+                          | 链接
+                      if item.from
+                        .bber-info-from
+                          i.anzhiyufont.anzhiyu-icon-fw-fire
+                          span=item.from
+                      if item.address
+                        .bber-info-from
+                          i.anzhiyufont.anzhiyu-icon-location-dot
+                          span=item.address
+                    .bber-reply(onclick="rm.rightMenuCommentText(" + `'${item.content}'` + ")")
+                      i.anzhiyufont.anzhiyu-icon-message
+      #bber-tips(style='color: var(--anzhiyu-secondtext);')
+        ="- 只展示最近" + i.limit + "条短文 -"

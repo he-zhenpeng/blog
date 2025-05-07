@@ -1,0 +1,131 @@
+div
+  script(src=url_for(theme.asset.utils))
+  script(src=url_for(theme.asset.main))
+
+  if theme.translate.enable
+    script(src=url_for(theme.asset.translate))
+
+  if theme.medium_zoom
+    script(src=url_for(theme.asset.medium_zoom))
+  else if theme.fancybox
+    script(src=url_for(theme.asset.fancybox))
+
+  if theme.instantpage
+    script(src=url_for(theme.asset.instantpage), type='module')
+
+  if theme.lazyload.enable
+    script(src=url_for(theme.asset.lazyload))
+
+  if theme.snackbar.enable
+    script(src=url_for(theme.asset.snackbar))
+
+  if theme.pangu.enable
+    != partial("includes/third-party/pangu.pug", {}, { cache: true })
+  if theme.asset.meting_api
+    script.
+      var meting_api = "!{theme.asset.meting_api}";
+
+  //- 深色模式粒子效果canvas
+  if theme.universe.enable
+    canvas(id="universe")
+    script(async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js")
+
+  //- 控制台打印信息
+  if theme.console.enable
+    != partial("includes/anzhiyu/log-js.pug", {}, { cache: true })
+  
+  //- 随机文章
+  script(async src="/anzhiyu/random.js")
+
+  //- 页脚计时器
+  if theme.footer.runtime.enable
+    != partial("includes/third-party/runtime/runtime-js.pug", {}, { cache: true })
+
+  //- search
+  if theme.algolia_search.enable
+    script(src=url_for(theme.asset.algolia_search))
+    script(src=url_for(theme.asset.instantsearch))
+    script(src=url_for(theme.asset.algolia_js))
+  else if theme.local_search.enable
+    script(src=url_for(theme.asset.local_search))
+
+
+
+
+  .js-pjax
+    if theme.peoplecanvas.enable && is_home()
+      script.
+        if (typeof gsap === "object") {
+          getScript("!{url_for(theme.asset.people_js)}", {defer:true})
+        } else {
+          getScript("!{url_for(theme.asset.gsap_js)}").then(()=>{
+            getScript("!{url_for(theme.asset.people_js)}", {defer:true})
+          });
+        }
+    if needLoadCountJs
+      != partial("includes/third-party/card-post-count/index", {}, { cache: true })
+
+    if loadSubJs
+      include ./third-party/subtitle.pug
+
+    include ./third-party/math/index.pug
+
+    if commentsJsLoad
+      include ./third-party/comments/js.pug
+    
+    input(type="hidden" name="page-type" id="page-type" value=(page.type ? page.type : (is_post() ? "post" : (is_category() ? "categories" : "anzhiyu"))))
+
+    //- 评论弹幕
+    if theme.comment_barrage_config.enable && theme.comments.use == 'Twikoo' && page.comments
+      script(async src=url_for(theme.asset.comment_barrage_js))
+
+  != partial("includes/third-party/prismjs", {}, { cache: true })
+
+  if theme.aside.enable && theme.newest_comments.enable
+    if theme.pjax.enable
+      != partial("includes/third-party/newest-comments/index", {}, { cache: true })
+    else if (!is_post() && page.aside !== false)
+      != partial("includes/third-party/newest-comments/index", {}, { cache: true })
+  //- 气泡效果
+  if theme.bubble.enable
+    script(async data-pjax src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.1/bubble/bubble.js")
+  if theme.visitorMail.enable
+    - const mail = theme.visitorMail.mail
+    script.
+      var visitorMail = "#{mail}";
+
+  //- 即刻依赖waterfall
+  script(async data-pjax src=url_for(theme.asset.waterfall))
+  //- 文章二维码
+  script(src='https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js')
+  //- 右键菜单
+  if (theme.rightClickMenu && theme.rightClickMenu.enable)
+    script(src=url_for(theme.asset.right_click_menu_js))
+
+  //- iconfont依赖
+  link(rel="stylesheet" href=url_for(theme.asset.ali_iconfont_css))
+  if (theme.icons && theme.icons.ali_iconfont_js)
+    script(async src=url_for(theme.icons.ali_iconfont_js))
+
+  != fragment_cache('injectBottom', function(){return injectHtml(theme.inject.bottom)})
+
+  != partial("includes/third-party/effect", {}, { cache: true })
+
+  != partial("includes/third-party/chat/index", {}, { cache: true })
+
+  if theme.aplayerInject && theme.aplayerInject.enable
+    if theme.pjax.enable || theme.aplayerInject.per_page
+      include ./third-party/aplayer.pug
+    else if page.aplayer
+      include ./third-party/aplayer.pug
+
+  if theme.pjax.enable
+    != partial("includes/third-party/pjax", {}, { cache: true })
+
+  if theme.busuanzi.site_uv || theme.busuanzi.site_pv || theme.busuanzi.page_pv
+    script(async data-pjax src= theme.asset.busuanzi || '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js')
+  if theme.accesskey.enable
+    script(charset="UTF-8" src=url_for(theme.asset.accesskey_js))
+
+  if is_current("/") && theme.greetingBox.enable
+    #greetingBox

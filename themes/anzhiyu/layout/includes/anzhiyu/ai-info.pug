@@ -1,0 +1,26 @@
+- let pageFillDescription = get_page_fill_description()
+- let gptName = theme.post_head_ai_description.gptName
+- let mode = theme.post_head_ai_description.mode
+- let switchBtn = theme.post_head_ai_description.switchBtn
+if (pageFillDescription && page.ai)
+  .post-ai-description
+    .ai-title
+      i.anzhiyufont.anzhiyu-icon-bilibili
+      .ai-title-text AI-摘要
+      if (switchBtn)
+        #ai-Toggle 切换
+      i.anzhiyufont.anzhiyu-icon-arrow-rotate-right
+      i.anzhiyufont.anzhiyu-icon-circle-dot(title="朗读摘要")
+      #ai-tag
+        if mode == "tianli"
+          = "Tianli GPT"
+        else
+          = gptName + " GPT"
+    .ai-explanation AI初始化中...
+    .ai-btn-box
+      .ai-btn-item 介绍自己 🙈
+      .ai-btn-item 生成本文简介 👋
+      .ai-btn-item 推荐相关文章 📖
+      .ai-btn-item 前往主页 🏠
+      .ai-btn-item#go-tianli-blog 前往爱发电购买
+    script(data-pjax src=url_for(theme.asset.ai_abstract_js))
