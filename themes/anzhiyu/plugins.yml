@@ -1,0 +1,230 @@
+algolia_search:
+  name: algoliasearch
+  file: dist/algoliasearch-lite.umd.js
+  version: 4.18.0
+instantsearch:
+  name: instantsearch.js
+  file: dist/instantsearch.production.min.js
+  version: 4.60.0
+docsearch_js:
+  name: "@docsearch/js"
+  other_name: docsearch-js
+  file: dist/umd/index.js
+  version: 3.5.2
+docsearch_css:
+  name: "@docsearch/css"
+  other_name: docsearch-css
+  file: dist/style.css
+  version: 3.5.2
+pjax:
+  name: pjax
+  file: pjax.min.js
+  version: 0.2.8
+blueimp_md5:
+  name: blueimp-md5
+  file: js/md5.min.js
+  version: 2.19.0
+valine:
+  name: valine
+  file: dist/Valine.min.js
+  version: 1.5.1
+twikoo:
+  name: twikoo
+  file: dist/twikoo.all.min.js
+  version: 1.6.39
+waline_js:
+  name: "@waline/client"
+  file: dist/waline.js
+  other_name: waline
+  version: 3.1.3
+waline_css:
+  name: "@waline/client"
+  file: dist/waline.css
+  other_name: waline
+  version: 3.1.3
+waline_meta_css:
+  name: "@waline/client"
+  file: dist/waline-meta.css
+  other_name: waline
+  version: 3.1.3
+sharejs:
+  name: butterfly-extsrc
+  file: sharejs/dist/js/social-share.min.js
+  version: 1.1.3
+sharejs_css:
+  name: butterfly-extsrc
+  file: sharejs/dist/css/share.min.css
+  version: 1.1.3
+mathjax:
+  name: mathjax
+  file: es5/tex-mml-chtml.js
+  version: 3.2.2
+katex:
+  name: katex
+  file: dist/katex.min.css
+  other_name: KaTeX
+  version: 0.16.0
+katex_copytex:
+  name: katex
+  file: dist/contrib/copy-tex.min.js
+  other_name: KaTeX
+  version: 0.16.0
+mermaid:
+  name: mermaid
+  file: dist/mermaid.min.js
+  version: 10.2.4
+canvas_ribbon:
+  name: butterfly-extsrc
+  file: dist/canvas-ribbon.min.js
+  version: 1.1.3
+canvas_fluttering_ribbon:
+  name: butterfly-extsrc
+  file: dist/canvas-fluttering-ribbon.min.js
+  version: 1.1.3
+canvas_nest:
+  name: butterfly-extsrc
+  file: dist/canvas-nest.min.js
+  version: 1.1.3
+activate_power_mode:
+  name: butterfly-extsrc
+  file: dist/activate-power-mode.min.js
+  version: 1.1.3
+fireworks:
+  name: butterfly-extsrc
+  file: dist/fireworks.min.js
+  version: 1.1.3
+click_heart:
+  name: butterfly-extsrc
+  file: dist/click-heart.min.js
+  version: 1.1.3
+ClickShowText:
+  name: butterfly-extsrc
+  file: dist/click-show-text.min.js
+  version: 1.1.3
+lazyload:
+  name: vanilla-lazyload
+  file: dist/lazyload.iife.min.js
+  version: 17.8.5
+instantpage:
+  name: instant.page
+  file: instantpage.js
+  version: 5.2.0
+typed:
+  name: typed.js
+  file: dist/typed.umd.js
+  version: 2.1.0
+pangu:
+  name: pangu
+  file: dist/browser/pangu.min.js
+  version: 4.0.7
+fancybox_css:
+  name: "@fancyapps/ui"
+  file: dist/fancybox/fancybox.css
+  version: 5.0.28
+  other_name: fancyapps-ui
+fancybox:
+  name: "@fancyapps/ui"
+  file: dist/fancybox/fancybox.umd.js
+  version: 5.0.28
+  other_name: fancyapps-ui
+medium_zoom:
+  name: medium-zoom
+  file: dist/medium-zoom.min.js
+  version: 1.1.0
+snackbar_css:
+  name: node-snackbar
+  file: dist/snackbar.min.css
+  version: 0.1.16
+snackbar:
+  name: node-snackbar
+  file: dist/snackbar.min.js
+  version: 0.1.16
+fontawesome:
+  name: "@fortawesome/fontawesome-free"
+  file: css/all.min.css
+  other_name: font-awesome
+  version: 6.4.0
+flickr_justified_gallery_js:
+  name: flickr-justified-gallery
+  file: dist/fjGallery.min.js
+  version: 2.1.2
+flickr_justified_gallery_css:
+  name: flickr-justified-gallery
+  file: dist/fjGallery.css
+  version: 2.1.2
+aplayer_css:
+  name: anzhiyu-theme-static
+  file: aplayer/APlayer.min.css
+  version: 1.0.0
+aplayer_js:
+  name: anzhiyu-blog-static
+  file: js/APlayer.min.js
+  version: 1.0.1
+meting_js:
+  name: hexo-anzhiyu-music
+  file: assets/js/Meting2.min.js
+  version: 1.0.1
+prismjs_js:
+  name: prismjs
+  file: prism.js
+  other_name: prism
+  version: 1.29.0
+prismjs_lineNumber_js:
+  name: prismjs
+  file: plugins/line-numbers/prism-line-numbers.min.js
+  other_name: prism
+  version: 1.29.0
+prismjs_autoloader:
+  name: prismjs
+  file: plugins/autoloader/prism-autoloader.min.js
+  other_name: prism
+  version: 1.29.0
+artalk_js:
+  name: artalk
+  file: dist/Artalk.js
+  version: 2.6.4
+artalk_css:
+  name: artalk
+  file: dist/Artalk.css
+  version: 2.6.4
+pace_js:
+  name: pace-js
+  other_name: pace
+  file: pace.min.js
+  version: 1.2.4
+pace_default_css:
+  name: anzhiyu-theme-static
+  file: progress_bar/progress_bar.css
+  version: 1.1.10
+coin_js:
+  name: anzhiyu-theme-static
+  file: coin/coin.js
+  version: 1.0.0
+coin_css:
+  name: anzhiyu-theme-static
+  file: coin/coin.min.css
+  version: 1.0.0
+countup_js:
+  name: anzhiyu-theme-static
+  file: countup/countup.js
+  version: 1.0.0
+gsap_js:
+  name: anzhiyu-theme-static
+  file: gsap/gsap.min.js
+  version: 1.0.0
+rightmenu:
+  name: anzhiyu-theme-static
+  file: rightmenu/rightmenu.js
+  version: 1.0.0
+waterfall:
+  name: anzhiyu-theme-static
+  file: waterfall/waterfall.js
+  version: 1.0.0
+ali_iconfont_css:
+  name: anzhiyu-theme-static
+  file: icon/ali_iconfont_css.css
+  version: 1.1.9
+accesskey_js:
+  name: anzhiyu-theme-static
+  file: accesskey/accesskey.js
+  version: 1.1.5
