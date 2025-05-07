@@ -1,0 +1,8 @@
+.relatedPosts > .relatedPosts-list > div {
+  border-radius: var(--anzhiyu-border-radius);
+}
+
+/* 侧边栏按钮圆角 */
+#rightside > div > button {
+  border-radius: 5px;
+}
