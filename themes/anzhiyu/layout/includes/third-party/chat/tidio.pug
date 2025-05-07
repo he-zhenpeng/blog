@@ -1,0 +1,47 @@
+script(src=`//code.tidio.co/${theme.tidio.public_key}.js` async)
+script.
+  (() => {
+    const isChatBtn = !{theme.chat_btn}
+    const isChatHideShow = !{theme.chat_hide_show}
+
+    if (isChatBtn) {
+      let isShow = false
+      const close = () => {
+        window.tidioChatApi.hide()
+        isShow = false
+        document.body.style.position = 'relative';
+        document.documentElement.style.overflow = 'auto'
+      }
+      
+      const open = () => {
+        window.tidioChatApi.open()
+        window.tidioChatApi.show()
+        isShow = true
+      }
+
+      const onTidioChatApiReady = () => {
+        window.tidioChatApi.hide()
+        window.tidioChatApi.on("close", close)
+      }
+      if (window.tidioChatApi) {
+        window.tidioChatApi.on("ready", onTidioChatApiReady)
+      } else {
+        document.addEventListener("tidioChat-ready", onTidioChatApiReady)
+      }
+
+      window.chatBtnFn = () => {
+        if (!window.tidioChatApi) return
+        isShow ? close() : open()
+      }
+    } else if (isChatHideShow) {
+      window.chatBtn = {
+        hide: () => {
+          window.tidioChatApi && window.tidioChatApi.hide()
+        },
+        show: () => {
+          window.tidioChatApi && window.tidioChatApi.show()
+        }
+      }
+    }
+  })()
+
