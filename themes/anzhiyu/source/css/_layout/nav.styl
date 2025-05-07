@@ -1,0 +1,743 @@
+#sidebar #sidebar-menus .menus_items .menus_item_child
+  margin: 0px
+  list-style: none
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+
+#sidebar #sidebar-menus .menus_item_child li
+  width: calc(50% - 8px)
+  margin: 4px
+
+#sidebar #sidebar-menus .menus_item_child .site-page.child
+  display: flex
+  flex-direction: column
+  align-items: center
+  padding: 8px
+  border-radius: 12px
+  border: var(--style-border-always)
+  background: var(--anzhiyu-card-bg)
+  font-size: 14px
+  height: 4.2rem;
+  width: 7rem;
+  justify-content: space-between;
+
+#sidebar .menus_item ul
+  padding-left: 0px
+
+#nav-group
+  max-width: 1400px;
+  width: 100%;
+  display: flex;
+  position: relative;
+  align-items: center;
+
+#page-header.nav-fixed #center-console
+  & + label i
+    background: var(--font-color);
+#center-console
+  display: none
+  & + label
+    --icon-size: 1.375rem;
+    position: relative;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: var(--icon-size);
+    width: var(--icon-size);
+    cursor: pointer;
+    transition: 1s;
+    margin-left: 1rem
+    &:hover
+      i
+        &.left
+          width: calc(var(--icon-size)/2.5);
+        &.center
+          opacity: 0.5
+          width: calc(var(--icon-size)/2.5);
+        &.right
+          width: calc(var(--icon-size)/2.5);
+          height: calc(var(--icon-size)/1.15);
+          transform: none;
+    i
+      background: var(--light-grey);
+      position: absolute;
+      border-radius: calc(var(--icon-size)*.15);
+      transition: .5s var(--animation-on);
+      inset: 0;
+      margin: auto;
+      right: auto;
+      width: calc(var(--icon-size)/3);
+      height: calc(var(--icon-size)/3);
+      transform: translateY(calc(var(--icon-size)/4));
+      &.left
+        width: 100%;
+        transform: translateY(calc(var(--icon-size)/-4));
+      &.right
+        left: auto;
+        right: 0;
+        width: calc(var(--icon-size)/2);
+  &:checked + label
+    right: 0
+    top: 0.5rem;
+    z-index: 31;
+    &:hover
+      &::after
+        background: var(--anzhiyu-main) !important;
+    &::after
+      content: "";
+      width: 35px;
+      height: 35px;
+      display: block;
+      position: absolute;
+      z-index: -1;
+      top: -6px;
+      left: -6.3px;
+      background: var(--anzhiyu-fontcolor) !important;
+      border-radius: 50px;
+    &:is(.widget, .widget:hover) i
+      height: calc(var(--icon-size)/4.5);
+      background: var(--anzhiyu-white) !important;
+    i.left
+      width: 100% !important;
+      transform: rotate(-45deg) !important;
+    i.center
+      width: 0 !important;
+    i.right
+      width: 100% !important;
+      transform: rotate(45deg) !important;
+[data-theme="dark"] #center-console:checked + label:is(.widget, #center-console:checked + label .widget:hover) i
+  background: var(--anzhiyu-black) !important;
+#body-wrap
+  .nav-fixed #travellings_button
+    &::after
+      background: var(--anzhiyu-main) !important;
+
+  #travellings_button
+    display: flex
+    &:hover::after
+      opacity: 1;
+      transform: none;
+      visibility: visible;
+    &:hover
+      a
+        background: var(--anzhiyu-main);
+        -webkit-box-shadow: var(--anzhiyu-shadow-main);
+        box-shadow: var(--anzhiyu-shadow-main);
+        i
+          color: var(--anzhiyu-white);
+    &::after
+      --height: 2rem;
+      content: attr(title);
+      position: fixed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--anzhiyu-white);
+      background: var(--anzhiyu-white-op) !important;
+      box-shadow: var(--anzhiyu-shadow-nav);
+      border-radius: var(--anzhiyu-radius-full);
+      width: fit-content;
+      height: var(--height);
+      font-size: var(--global-font-size);
+      white-space: nowrap;
+      margin: auto;
+      padding: 0 4em;
+      top: calc((60px - var(--height)) / 2);
+      right: 0;
+      left: 0;
+      line-height: 0;
+      opacity: 0;
+      z-index: 1;
+      visibility: hidden;
+      transform: scaleX(1.1);
+      pointer-events: none;
+      transition: .5s;
+      +maxWidth900()
+        padding: 0 2em;
+
+#body-wrap:has(#travellings_button:hover) 
+  #page-name,
+  #nav #menus
+    display: none
+#body-wrap .page #travellings_button:hover
+  &::after
+    background: var(--anzhiyu-main) !important;
+
+
+@media screen and (max-width: 768px)
+  #page-header #nav
+    padding: 20px
+
+  .cardHover,
+  .error404 #error-wrap .error-content,
+  .layout > div:first-child:not(.recent-posts),
+  #recent-posts > .recent-post-item,
+  #aside-content .card-widget,
+  .layout > .recent-posts .pagination > *:not(.space)
+    box-shadow: none !important
+
+  #sidebar #sidebar-menus .menus_items .site-page:hover
+    background: none
+
+  div#travellings_button
+    display: none !important
+
+#nav 
+  #blog_name,
+  .mask-name-container,
+  #menus,
+  #nav-right .nav-button,
+  #nav-right #toggle-menu
+    a:hover
+      background var(--anzhiyu-main)
+      transition 0.3s
+
+#page-header.not-top-img
+  margin-bottom 0px
+#page-header:not(.nav-fixed) #percent
+  transition 0.3s
+
+#page-header #nav #nav-right > div
+  margin-left 1rem
+  padding 0
+
+.nav-button
+  cursor pointer
+
+#nav #menus
+  padding 0 calc((100% - 1400px + 3rem) / 2)
+  display flex
+  justify-content center
+  width 100%
+  position absolute
+  height 60px
+  left 0
+  margin 0
+  transform: translateZ(0);
+  will-change: auto
+
+#nav .site-page
+  padding-bottom 0px
+#nav *::after
+  background-color transparent !important
+
+/* 顶栏修改 */
+#nav .menus_items .menus_item a
+  border-radius 50px
+#nav .menus_items .menus_item .menus_item_child li a
+  padding 2px 16px
+  border-radius 50px
+  transition: .3s !important
+#nav .menus_items .menus_item .menus_item_child li:hover a
+  color white !important
+
+#nav .menus_items .menus_item .menus_item_child li
+  border-radius 50px
+  transition all 0.3s
+  display inline-block
+  margin 0 3px
+
+#site-name, .shuoshuo
+  white-space nowrap
+  overflow hidden
+#site-name
+  padding 0 2px
+  height: 35px;
+  line-height: 35px;
+  position relative
+  display flex
+  align-items center
+  justify-content center
+  transition 0.3s
+
+/* 一级菜单居中 */
+#nav .menus_items
+  position relative
+  width fit-content
+  text-align center
+  left 0px
+  right 0px
+  top 0px
+  display flex
+  flex-direction row
+  justify-content center
+
+#nav 
+  #blog_name,
+  .mask-name-container,
+  #menus,
+  #nav-right .nav-button,
+  #nav-right #toggle-menu
+    a
+      border-radius 50px;
+.page #nav 
+  #blog_name,
+  .mask-name-container,
+  #menus,
+  #nav-right .nav-button,
+  #nav-right #toggle-menu
+    a:hover
+      color var(--anzhiyu-white)
+      background var(--anzhiyu-main)
+      transition 0.3s
+      box-shadow var(--anzhiyu-shadow-main)
+.post #nav 
+  #blog_name .back-home-button,
+  #blog_name #site-name,
+  #nav-right .nav-button a,
+  #nav-right #toggle-menu
+    &:hover
+      color var(--anzhiyu-white)
+      background var(--anzhiyu-white-op)
+      transition 0.3s
+.post #nav 
+  #menus .menus_item
+    &:hover > a
+      color var(--anzhiyu-white)
+      background var(--anzhiyu-white-op)
+      transition 0.3s
+
+.post .nav-fixed #nav 
+  #menus .menus_item
+    &:hover
+      > a.site-page
+        color var(--anzhiyu-white)
+        background var(--anzhiyu-main)
+        transition 0.3s
+        box-shadow var(--anzhiyu-shadow-main)
+  #blog_name #site-name,
+  #blog_name .back-home-button,
+  #nav-right .nav-button a,
+  #nav-right #toggle-menu
+    &:hover
+      color var(--anzhiyu-white)
+      background var(--anzhiyu-main)
+      transition 0.3s
+      box-shadow var(--anzhiyu-shadow-main)
+
+#page-header.nav-fixed #nav #page-name
+  background none
+  text-shadow none
+  box-shadow none
+  font-weight bold
+  border-radius 100px
+  min-width 100px
+  line-height: 1.5rem;
+
+#name-container
+  align-items center
+  display flex
+  border-radius 12px
+  height 40px
+  position absolute
+  top 62px
+  left 0px
+  right 0px
+  margin auto
+  justify-content center
+  animation-timing-function ease-out
+  -webkit-animation-timing-function ease-out
+#page-header.nav-fixed.nav-visible #name-container
+  z-index 100
+  top 60px
+  transition 0.3s
+
+#page-header.nav-fixed #nav #page-name:hover
+  color var(--anzhiyu-main)
+@media screen and (min-width: 900px)
+  #page-header.nav-fixed #nav #page-name::after
+    opacity 0
+    transform scale(1)
+    content "回到顶部"
+    transition 0.2s
+    position absolute
+    left 0
+    right 0
+    top 50%
+    transform translateY(-50%)
+    margin auto
+    color var(--anzhiyu-white) !important
+    font-weight 700
+    line-height 2
+@media screen and (min-width: 1200px)
+  #page-header.nav-fixed #nav #page-name:hover:after
+    opacity 1
+  #page-header.nav-fixed #nav #page-name:hover
+    background var(--anzhiyu-main)
+
+#page-header #nav #page-name
+  display inline
+  font-weight bold
+  padding 4px 8px
+  opacity 0
+  transition 0.1s
+  text-overflow ellipsis
+  overflow hidden
+  white-space nowrap
+  position relative
+  text-align center
+  cursor pointer
+  top 0
+  font-size 1.1rem
+  animation-timing-function ease-in
+  -webkit-animation-timing-function ease-in
+
+#menus > div.menus_items > div > a
+  letter-spacing 0.3rem
+  font-weight 700
+  padding 0em 0.8em 0em 1em
+  height 35px
+  line-height 35px
+  transition: color 0s !important
+
+#nav div#toggle-menu
+  padding 2px 0 4px 6px
+
+#page-name:hover:before
+  opacity 1
+
+::backdrop
+  display block
+  position fixed
+  top 0px
+
+.mask-name-container
+  width 100%
+  height 100%
+  position absolute
+  overflow hidden
+  left 0
+
+#nav .menus_items .menus_item > a > i:last-child
+  display none
+
+#nav #search-button
+  font-size 1.3em
+
+.back-home-button:hover
+  background var(--anzhiyu-main)
+  color var(--anzhiyu-white) !important
+
+.back-home-button
+  display flex
+  width 35px
+  height 35px
+  padding 0 !important
+  align-items center
+  justify-content center
+  margin-right 4px
+  transition 0.3s
+  border-radius 8px
+
+.back-home-button:hover .back-menu-list-groups
+  display: flex;
+  opacity: 1;
+  transition: .3s;
+  top: 55px;
+  pointer-events: auto;
+  left: 0rem;
+  transform: scale(1);
+
+.back-home-button .back-menu-list-groups
+  position: absolute;
+  top: 45px;
+  transform: scale(.8);
+  transform-origin: top left;
+  left: 0rem;
+  background-color: var(--anzhiyu-maskbgdeep);
+  border-radius: 12px;
+  border: var(--style-border);
+  flex-direction: column;
+  font-size: 12px;
+  color: var(--anzhiyu-secondtext);
+  box-shadow: var(--anzhiyu-shadow-border);
+  transition: .1s;
+  opacity: 0;
+  pointer-events: none;
+  backdrop-filter: blur(20px);
+
+.back-home-button .back-menu-list-group
+  display flex
+  flex-direction column
+
+.back-home-button .back-menu-list-group .back-menu-list-title
+  margin 8px 0 0 16px
+  transition 0.3s
+
+.back-home-button .back-menu-list
+  display flex
+  flex-direction row
+  flex-wrap wrap
+  width 340px
+  justify-content space-between
+
+.back-home-button .back-menu-list::before
+  position absolute
+  top -24px
+  left 0px
+  width 100%
+  height 25px
+  content ""
+  transition: 0s
+
+.back-home-button .back-menu-list-groups .back-menu-list-group:last-child .back-menu-list
+  margin 0 0 8px
+
+.back-home-button .back-menu-list-group:hover .back-menu-list-title
+  color var(--anzhiyu-main)
+
+.back-home-button .back-menu-list-groups:hover
+  border var(--style-border-hover)
+
+.back-home-button .back-menu-list .back-menu-item
+  display flex
+  align-items center
+  margin 4px 8px
+  padding 4px 8px !important
+  transition 0.3s
+  width 150px
+  border-radius 8px !important
+  transition 0.2s !important
+
+.back-menu-list-groups .back-menu-list .back-menu-item .back-menu-item-text
+  font-size var(--global-font-size)
+  margin-left 0.5rem
+  color var(--anzhiyu-fontcolor)
+  white-space nowrap
+  +maxWidth768()
+    font-size: 14px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
+.back-menu-list-groups .back-menu-list .back-menu-item .back-menu-item-icon
+  width 24px
+  height 24px
+  border-radius 24px
+  background var(--anzhiyu-secondbg)
+
+#page-header #nav .back-home-button
+  cursor pointer
+  position relative
+
+#page-header:not(.not-top-img) #nav .back-home-button
+  color var(--light-grey)
+
+#page-header.nav-fixed:not(.not-top-img) #nav .back-home-button
+  color var(--font-color)
+
+.back-home-button .back-menu-list .back-menu-item:hover .back-menu-item-text
+  color var(--anzhiyu-white)
+
+.back-menu-item-icon.loading img
+  width 25px
+
+#page-header #nav #menus .nav-button.long a.totopbtn span
+  border-radius 35px
+  display flex
+  justify-content center
+  align-items center
+  transition 0.3s
+  white-space nowrap
+
+#page-header #nav #menus .nav-button.long a.totopbtn:hover
+  border-radius 35px
+  height 30px
+
+#nav #search-button
+  padding-left 0
+
+#search-button a.site-page.social-icon.search span
+  display none
+
+#nav .nav-button a:hover
+  color var(--anzhiyu-white) !important
+
+#menus > div.menus_items a
+  font-weight bold
+
+#menus .menus_item .menus_item_child .site-page.child.faa-parent.animated-hover .anzhiyu-icon-fan.faa-tada
+  animation rotate 1.6s linear infinite
+
+#nav-right
+  z-index 102
+  position absolute
+  right 0
+  display flex
+  flex-direction row
+  height 100%
+  align-items center
+
+/* nav left */
+#nav #blog_name
+  flex-wrap nowrap
+  height 60px
+  display flex
+  align-items center
+  transition 0.3s
+  z-index 102
+
+#blog_name #site-name i
+  position absolute
+  transition 0.3s
+  font-size: 1rem
+  opacity 0
+
+#blog_name #site-name:hover .title
+  opacity 0
+
+#blog_name #site-name .title
+  transition 0.3s
+  letter-spacing normal
+  font-size: 1.2rem;
+  padding: 0 5px;
+  line-height: 2rem;
+  transition: color 0s;
+
+.post #blog_name #site-name .title
+  transition 0s
+
+#blog_name #site-name:hover i
+  color white
+  opacity 1
+
+#page-header #nav #nav-right .nav-button a i,
+#page-header #nav #nav-left .nav-button a i
+  line-height 1
+  transition .3s
+
+#page-header #nav #nav-right .nav-button a:hover i,
+#page-header #nav #nav-left .nav-button a:hover i
+  color var(--anzhiyu-white)
+  transition background 0.35s ease-in-out, color 0.2s ease-in-out
+
+[data-theme="dark"] #page-header #nav #nav-right .nav-button a i,
+[data-theme="dark"] #page-header #nav #nav-left .nav-button a i,
+[data-theme="dark"] #page-header #nav #nav-right .nav-button a i,
+[data-theme="dark"] #page-header #nav #nav-left .nav-button a i,
+[data-theme="dark"] #page-header.nav-fixed:not(.not-top-img) #nav .back-home-button
+  +maxWidth768()
+    color: #c9c9c9 !important
+
+/* 返回顶部按钮样式 */
+#nav-totop
+  width 35px
+  height 35px
+  transition 0.3s
+  display flex
+  border-radius 50px
+  align-items center
+  justify-content space-around
+  transition: all 0.3s ease-in-out;
+
+#page-header #nav #nav-right .nav-button a.totopbtn
+  width 25px
+  height 25px
+  border-radius 40px
+  background var(--font-color)
+  color var(--card-bg)
+  transition all 0.3s ease-in-out
+
+#page-header #nav #nav-right .nav-button:not(.long) a.totopbtn:hover
+  height 35px
+  width 35px
+
+#page-header #nav #nav-right .nav-button:not(.long):hover a.totopbtn
+  width 35px
+  height 35px
+  top 0
+  right 0
+
+#page-header #nav .nav-button a
+  height 35px
+  width 35px
+  display flex
+  align-items center
+  justify-content center
+  transition: background 0.3s ease-in-out, color 0s ease-in-out;
+
+.nav-fixed #nav-totop #percent,
+.page #nav-totop #percent
+  font-size 13px
+  border-radius 35px
+  display flex
+  justify-content center
+  align-items center
+  white-space nowrap
+  color var(--card-bg)
+  width 25px
+  height 25px
+
+#nav-totop #percent
+  font-weight 700
+
+#page-header #nav #nav-right .nav-button:hover a.totopbtn
+  background var(--anzhiyu-main)
+
+#nav-totop:hover .totopbtn i
+  opacity 1
+  color var(--anzhiyu-white)
+  transition 0.3s
+
+#nav-totop .totopbtn i
+  position absolute
+  display flex
+  opacity 0
+
+#nav-totop.long .totopbtn i
+  font-size 1rem
+
+#nav-totop:hover #percent
+  opacity 0
+  transform scale(1.5)
+  font-weight 700
+
+#page-header:not(.nav-fixed) #nav-totop
+  width 0
+  transform scale(0)
+  transition 0.3s
+  margin-left 0 !important
+  overflow hidden
+  transition 0.3s ease-in
+
+#page-header #nav #nav-right .nav-button.long,
+#page-header #nav #nav-right .nav-button.long a.totopbtn,
+#page-header #nav #nav-right .nav-button.long a.totopbtn span
+  width 70px
+
+#page-header #nav #nav-right .long#nav-totop:hover
+  background-color transparent
+
+/* 媒体查询适配 */
+@media screen and (max-width: 1390px)
+  #nav
+    padding 0 1.5rem
+  #nav .mask-name-container
+    padding 0 1.5rem
+  div#menus
+    padding 0 1.5rem
+
+@media screen and (min-width: 900px)
+  #nav .back-home-button:hover
+    box-shadow var(--anzhiyu-shadow-main)
+
+@media screen and (max-width: 768px)
+  .mask-name-container
+    display none
+  #menus
+    padding 20px
+  #page-header.not-top-img
+    margin-bottom 10px
+  #nav
+    border-bottom none
+    background var(--anzhiyu-background)
+  #page-header #nav #nav-right div
+    margin-left .5rem
+
+@media screen and (min-width: 768px)
+  .menus_item:hover > a.site-page
+    color var(--anzhiyu-white) !important
+    background var(--anzhiyu-main)
+    transition 0.3s
+    box-shadow var(--anzhiyu-shadow-main)

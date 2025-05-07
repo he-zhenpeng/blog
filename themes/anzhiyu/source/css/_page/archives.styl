@@ -1,0 +1,113 @@
+.article-sort
+  margin: .25rem
+  &-title
+    margin: 0.25rem;
+    padding: 0;
+    border: none;
+    font-weight: bold;
+    font-size: 2em;
+
+  &-item
+    position: relative
+    display: flex
+    align-items: center
+    transition: all 0.2s ease-in-out 0s;
+    border: none;
+    margin: 0 0 1rem 0rem;
+    overflow: hidden;
+    border-radius: 12px;
+
+    &.no-article-cover
+      height: 80px
+
+      .article-sort-item-info
+        padding: 0
+
+    &.year
+      font-size: 1rem;
+      color: var(--anzhiyu-secondtext);
+      margin-bottom: 0.25rem;
+
+      &:hover
+        &:before
+          border-color: $light-blue
+
+      &:before
+        border-color: var(--pseudo-hover)
+
+    &-time
+      color: $theme-meta-color
+      font-size: 95%
+
+      time
+        padding-left: 6px
+        cursor: default
+
+    &-title
+      @extend .limit-more-line
+      color: var(--font-color)
+      font-size: 1.1em
+      transition: all .3s
+      -webkit-line-clamp: 1
+      margin-right: auto;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      order: 0;
+      font-weight: bold;
+      line-height: 1.3;
+
+      &:hover
+        color: var(--anzhiyu-lighttext)
+    &-index
+      opacity: .5
+      position: absolute
+      top: .5rem
+      right: .5rem
+      font-style: italic
+      font-size: 2.5rem
+      line-height: 1.5rem
+
+    &-img
+      overflow: hidden
+      width: 151px
+      height: 80px
+      border-radius: 12px;
+      min-width: 151px;
+      min-height: 80px;
+      background: var(--anzhiyu-secondbg);
+      -webkit-mask-image: -webkit-radial-gradient(center, rgb(255, 255, 255), rgb(0, 0, 0));
+
+      img
+        @extend .imgHover
+
+    &-info
+      padding: 0 0.8rem;
+      display: flex;
+      flex-direction: column;
+      max-height: 80px;
+      height: 80px;
+      justify-content: space-between;
+      .article-sort-item-index
+        +maxWidth768()
+          display: none
+      .article-sort-item-title
+        height: 30%;
+        +maxWidth768()
+          font-size: .9em;
+          height: 25%;
+      .article-meta-wrap
+        height: 35%;
+        .article-sort-item-tags a
+          color: var(--anzhiyu-fontcolor);
+          transition: 0.3s;
+          margin-right: auto;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          padding: 0 0.2rem;
+          padding-left: 0;
+          span
+            font-size: 12px;
+            margin-right: 1px;
+            pointer-events: none
+        .article-sort-item-time
+            font-size: 12px;

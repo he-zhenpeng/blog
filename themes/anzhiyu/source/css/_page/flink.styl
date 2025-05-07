@@ -1,0 +1,478 @@
+body[data-type="link"]
+  #page
+    .page-title
+      display: none
+#flink-banners
+  display: flex;
+  width: 100%;
+  height: 76%;
+  background: var(--anzhiyu-card-bg);
+  padding: 1.5rem;
+  border: var(--style-border);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: var(--anzhiyu-shadow-border);
+  flex-direction: column;
+  overflow: hidden;
+  transition: 0.3s;
+  will-change: transform;
+  animation: slide-in 0.6s 0.2s backwards;
+  .flink .banners-title
+    top: 1.5rem;
+  .banner-top-box
+    display: flex
+    align-items: center;
+    justify-content: space-between;
+  .banner-button-group 
+    position: absolute;
+    right: 2rem;
+    top: 2.5rem;
+    display: flex;
+    +maxWidth768()
+      display: none
+    .banner-button
+      color: var(--anzhiyu-card-bg);
+      &.secondary 
+        color: var(--anzhiyu-fontcolor);
+      &:hover
+        background: var(--anzhiyu-theme);
+        color: var(--anzhiyu-white);
+      i
+        margin-right: 8px;
+        font-size: 1rem;
+  #skills-tags-group-all
+    .img-alt
+      display: none
+    .tags-group-wrapper
+      animation: rowup 120s linear infinite;
+    .tags-group-icon
+      border-radius: 50%;
+      img
+        min-width: 100%;
+        min-height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+
+.flink-desc
+  margin: .2rem 0 .5rem
+
+#article-container
+  .anzhiyu-flink-list
+    overflow: auto
+    margin: -6px
+    text-align: center
+    .img-alt
+      display: none
+    &.cf-friends-lost-contact
+      .flink-list-item
+        height 60px
+        &:hover
+          .cf-friends-link img
+            width: 0;
+            height: 0;
+            opacity: 0;
+            margin: 0.5rem;
+            min-width: 0px;
+            min-height: 0px;
+        .cf-friends-link img
+          width: 30px;
+          height: 30px;
+          min-width: 30px;
+          min-height: 30px;
+
+    .flink-list-item
+      margin: 6px 6px;
+      transition: 0.3s;
+      border-radius: 12px;
+      transition-timing-function: ease-in-out;
+      position: relative;
+      width: calc(20% - 12px);
+      border: var(--style-border);
+      box-shadow: var(--anzhiyu-shadow-border);
+      background: var(--anzhiyu-card-bg);
+      display: flex;
+      float: left;
+      overflow: hidden;
+      height: 90px;
+      line-height: 17px;
+      transform: translateZ(0px);
+      .cf-friends-link
+        display: flex;
+        border: none;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        color: var(--anzhiyu-fontcolor);
+        text-decoration: none;
+        font-weight: bold;
+        padding: 0 4px;
+        border-radius: 4px 4px 0 0;
+        img
+          border-radius: 32px;
+          margin: 15px 20px 15px 15px;
+          transition: 0.3s;
+          background: var(--anzhiyu-background);
+          min-width: 60px;
+          min-height: 60px;
+          width: 60px;
+          height: 60px;
+          float: left;
+          object-fit: cover;
+
+
+      +maxWidth1200()
+        width: calc(50% - 15px) !important
+
+      +maxWidth600()
+        width: calc(100% - 15px) !important
+          
+
+      &:hover:before,
+      &:focus:before,
+      &:active:before
+        transform: scale(1)
+
+      .flink-item-info
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: calc(100% - 90px);
+        height: fit-content;
+
+        .flink-item-name
+          @extend .limit-one-line
+          text-align: left;
+          line-height: 20px;
+          color: var(--anzhiyu-fontcolor);
+          display: block;
+          padding: 0px 10px 0px 0px;
+          font-weight: 700;
+          font-size: 19px;
+          max-width: calc(100% - 12px);
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+
+        .flink-item-desc
+          @extend .limit-one-line
+          white-space: normal;
+          padding: 5px 10px 16px 0;
+          color: var(--anzhiyu-fontcolor);
+          text-align: left;
+          font-size: 0.93em;
+          height: 40px;
+          text-overflow: ellipsis;
+          opacity: 0.7;
+          display: -webkit-box;
+          overflow: hidden;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+      &:hover
+        transform: scale(1);
+        background: var(--anzhiyu-theme);
+        border: var(--style-border-hover);
+        box-shadow: var(--anzhiyu-shadow-main);
+        .site-card-tag
+          left: -70px;
+        a 
+          img 
+            transition: 0.6s;
+            width: 0;
+            height: 0;
+            opacity: 0;
+            margin: 0.5rem;
+            min-width: 0px;
+            min-height: 0px;
+          .flink-item-info
+            min-width: calc(100% - 20px);
+          .flink-item-name
+            color: var(--anzhiyu-white);
+          .flink-item-desc
+            overflow: hidden;
+            width: 100%;
+            color: var(--anzhiyu-white);
+
+.flink-name
+  margin-bottom: 5px
+  font-weight: bold
+  font-size: 1.5em
+
+#article-container img
+  margin-bottom: 0.5rem;
+  object-fit: cover;
+  max-height: 900px;
+.flexcard-flink-list
+  overflow hidden
+  .flink-list-card
+    .wrapper img
+      transition: transform .5s ease-out !important;
+    &:hover
+      border-color: var(--anzhiyu-main)!important;
+      background-color: var(--anzhiyu-main)!important;
+      box-shadow: var(--anzhiyu-shadow-theme)!important;
+
+  & > a
+    width: calc(100% / 5 - 0.5rem);
+    height 150px
+    position relative
+    display block
+    margin: 0.5rem 0.25rem;
+    float left
+    overflow hidden
+    padding: 0;
+    border-radius: 8px;
+    transition all .3s ease 0s, transform .6s cubic-bezier(.6, .2, .1, 1) 0s
+    box-shadow none
+    border: var(--style-border)!important;
+    &:hover
+      .info
+        transform translateY(-100%)
+      .wrapper
+        img
+          transform scale(1.2)
+      &::before
+        position: fixed
+        width:inherit
+        margin:auto
+        left:0
+        right:0
+        top:10%
+        border-radius: 10px
+        text-align: center
+        z-index: 100
+        content: attr(data-title)
+        font-size: 20px
+        color: #fff
+        padding: 10px
+        background-color: rgba($theme-color,0.8)
+
+    .cover
+      width 100%
+      transition transform .5s ease-out
+    .wrapper
+      position relative
+      .fadeIn
+        animation coverIn .8s ease-out forwards
+      img
+        height 150px
+        pointer-events none
+    .info
+      display flex
+      flex-direction column
+      justify-content center
+      align-items center
+      width 100%
+      height 100%
+      overflow hidden
+      border-radius 3px
+      background-color hsla(0, 0%, 100%, .7)
+      transition transform .5s cubic-bezier(.6, .2, .1, 1) 0s
+      img
+        position relative
+        top 45px
+        width 80px
+        height 80px
+        border-radius 50% !important
+        box-shadow 0 0 10px rgba(0, 0, 0, .3)
+        z-index 1
+        text-align center
+        pointer-events none
+      span
+        padding 20px 10% 60px 10%
+        font-size 16px
+        width 100%
+        text-align center
+        box-shadow 0 0 10px rgba(0, 0, 0, .3)
+        background-color hsla(0, 0%, 100%, .7)
+        color var(--font-color)
+        white-space nowrap
+        overflow hidden
+        text-overflow ellipsis
+.flexcard-flink-list>a .info,
+.flexcard-flink-list>a .wrapper .cover
+  position absolute
+  top 0
+  left 0
+
+@media screen and (max-width:1024px)
+  .flexcard-flink-list
+    & > a
+      width calc(33.33333% - 15px)
+
+@media screen and (max-width:600px)
+  .flexcard-flink-list
+    & > a
+      width calc(50% - 15px)
+
+[data-theme=dark]
+  .flexcard-flink-list a .info,
+  .flexcard-flink-list a .info span
+    background-color rgba(0, 0, 0, .6)
+  .flexcard-flink-list
+    & > a
+      &:hover
+        &:before
+          background-color: rgba(#121212,0.8);
+.justified-gallery > div > img,
+.justified-gallery > figure > img,
+.justified-gallery > a > a > img,
+.justified-gallery > div > a > img,
+.justified-gallery > figure > a > img,
+.justified-gallery > a > svg,
+.justified-gallery > div > svg,
+.justified-gallery > figure > svg,
+.justified-gallery > a > a > svg,
+.justified-gallery > div > a > svg,
+.justified-gallery > figure > a > svg
+  position static!important
+
+.site-card-tag
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 4px 8px;
+  background-color: var(--anzhiyu-theme);
+  box-shadow: var(--anzhiyu-shadow-blue);
+  color: var(--anzhiyu-white);
+  z-index: 1;
+  border-radius: 11px 0 12px 0;
+  transition: 0.3s;
+  font-size: 12px;
+  &.speed
+    background: var(--anzhiyu-green);
+    box-shadow: var(--anzhiyu-shadow-green);
+  &.vip
+    background: linear-gradient(38deg, rgba(229, 176, 133, 1) 0%, rgba(212, 143, 22, 1) 100%);
+    overflow: hidden;
+    box-shadow: var(--anzhiyu-shadow-yellow);
+  i.light
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 50px;
+    background-image: -webkit-linear-gradient(0deg,rgba(255,255,255,0),rgba(255,255,255,.5),rgba(255,255,255,0))
+    animation: light_tag 4s both infinite;
+    will-change: transform;
+
+@keyframes light_tag
+  0%
+    transform: skewx(0) translateX(-150px);
+  99%
+    transform: skewx(-25deg) translateX(50px);
+#article-container
+  .telescopic-site-card-group
+    padding: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    margin: -8px;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    .site-card
+      border: var(--style-border);
+      border-radius: 12px;
+      transition: 0.3s;
+      transition-timing-function: ease-in-out;
+      overflow: hidden;
+      height: 200px;
+      position: relative;
+      width: calc(100% / 7 - 16px);
+      background: var(--anzhiyu-card-bg);
+      box-shadow: var(--anzhiyu-shadow-border);
+      .img-alt
+        display: none
+      +maxWidth1200()
+        width: calc(20% - 16px) !important;
+      +maxWidth900()
+        width: calc(25% - 16px) !important;
+      +maxWidth768()
+        width: calc(33.3333% - 16px) !important;
+      +maxWidth600()
+        width: calc(50% - 16px) !important;
+      &:hover
+        border: var(--style-border-hover);
+        box-shadow: var(--anzhiyu-shadow-main);
+        .info
+          background: var(--anzhiyu-theme);
+          height: 120px;
+          .site-card-text 
+            .title
+              color: var(--anzhiyu-white);
+            .desc
+              transition: 0.3s;
+              color: var(--anzhiyu-white);
+              width: 100%;
+            +minWidth768()
+              .desc
+                -webkit-line-clamp: 4;
+
+        .site-card-tag
+          left: -50px;
+        .img
+          height: 80px;
+          img
+            transform: scale(1.1);
+            filter: brightness(0.3);
+      .info
+        display: flex;
+        border: none;
+        padding: 0.7rem;
+        width: 100%;
+        height: 90px;
+        margin: 0;
+        border-radius: 0 0 12px 12px;
+        .site-card-text
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          .title
+            color: var(--anzhiyu-fontcolor);
+            text-align: left;
+            font-weight: 600;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            -webkit-line-clamp: 1;
+            transition: all 0.3s ease 0s;
+          .desc
+            font-size: 0.9rem;
+            color: var(--anzhiyu-fontcolor);
+            opacity: 0.7;
+            transition: 0.3s;
+            text-align: left;
+            overflow-wrap: break-word;
+            line-height: 1.2;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            -webkit-line-clamp: 2;
+        .img-alt
+          display: none;
+        img
+          border-radius: 32px;
+          transition: 0.3s !important;
+          margin: 2px 8px 0 0;
+          width: 20px;
+          height: 20px;
+          min-width: 20px;
+          min-height: 20px;
+          background: var(--anzhiyu-secondbg);
+      .img
+        -webkit-mask-image: -webkit-radial-gradient(center, rgb(255, 255, 255), rgb(0, 0, 0));
+        border-radius: 0;
+        height: 120px;
+        width: 100%;
+        display: flex;
+        border: none;
+        padding: 0 !important;
+        transition: all 0.3s ease 0s;
+        img
+          border-radius: 0;
+          transform: scale(1.03);
+          transition: 0.3s;
+          margin: 0;
+          max-width: 100%;
+

@@ -1,0 +1,547 @@
+beautify()
+  headStyle(fontsize)
+    &:before
+      margin-left: unit((-(fontsize + 6)), 'px')
+      font-size: unit(fontsize, 'px')
+
+    &:hover
+      &:before
+        color: $light-blue
+
+  h1
+    headStyle(20)
+
+  h2
+    headStyle(18)
+
+  h3
+    headStyle(16)
+
+  h4
+    headStyle(14)
+
+  h5
+    headStyle(12)
+
+  h6
+    headStyle(12)
+
+  ol,
+  ul
+    p
+      margin: 0 0 8px
+
+  li
+    &::marker
+      color: $light-blue
+      font-weight: 600
+      font-size: 1.05em
+
+    &:hover
+      &::marker
+        color: var(--pseudo-hover)
+
+blockquote {
+  border: var(--style-border-always);
+  background-color: var(--anzhiyu-secondbg);
+  color: var(--anzhiyu-secondtext);
+  border-radius: 8px;
+  margin: 1rem 0;
+  padding: 0.5rem 0.8rem;
+}
+
+#article-container
+  word-wrap: break-word
+  overflow-wrap: break-word
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6
+    .post-content
+      line-height: 1.6;
+      border-top: 1px dashed var(--anzhiyu-theme-op);
+      padding-top: 1.5rem;
+      padding-left: 0;
+
+  a
+    color: $theme-link-color
+
+    &:hover
+      text-decoration: underline
+
+  img
+    display: block
+    margin: 0 auto 20px
+    max-width: 100%
+    transition: .3s
+    border-radius: 8px
+
+  p
+    margin: 0 0 16px
+
+  iframe
+    margin: 0 0 20px
+    border-radius: 12px
+
+  kbd
+    margin: 0 3px
+    padding: 3px 5px
+    border: 1px solid #b4b4b4
+    border-radius: 3px
+    background-color: #f8f8f8
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .25), 0 2px 1px 0 rgba(255, 255, 255, .6) inset
+    color: #34495e
+    white-space: nowrap
+    font-weight: 600
+    font-size: .9em
+    font-family: Monaco, 'Ubuntu Mono', monospace
+    line-height: 1em
+  h1
+    .headerlink
+      float: right;
+      opacity: 0.08;
+      position: relative;
+      padding: 0px;
+      border: none;
+      line-height: 2;
+      font-size: 2rem;
+      border-radius: 8px !important;
+      text-decoration: none;
+      font-weight: 700;
+      &::before
+        font-size: 2rem;
+  > :first-child:is(h2)
+    border-top: none;
+    padding-top: 0;
+    margin-top: 0;
+  h2
+    .headerlink
+      float: right;
+      opacity: 0.08;
+      position: relative;
+      padding: 0px;
+      border: none;
+      line-height: 2;
+      font-size: 1.8rem;
+      border-radius: 8px !important;
+      text-decoration: none;
+      font-weight: 700;
+      &::before
+        font-size: 1.8rem;
+  h3,h4,h5,h6
+    .headerlink
+      float: right;
+      opacity: 0.08;
+      position: relative;
+      padding: 0px;
+      border: none;
+      line-height: 2;
+      font-size: 1.3rem;
+      border-radius: 8px !important;
+      text-decoration: none;
+      font-weight: 700;
+      &::before
+        font-size: 1.3rem;
+  a.headerlink
+    &::before
+      if hexo-config('icons.fontawesome')
+        @extend .fontawesomeIcon
+      else
+        @extend .anzhiyufont
+      content: '\f0c1'
+      float: right
+      color: var(--headline-presudo)
+      transition: all .3s
+
+    &:hover
+      &:after
+        color: var(--pseudo-hover)
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6
+      &:hover
+        a.headerlink
+          &:after
+            opacity: 1
+
+  ol,
+  ul
+    ol,
+    ul
+      padding-left: 20px
+
+    li
+      margin: 4px 0
+
+    p
+      margin: 0 0 8px
+
+  if hexo-config('beautify.enable')
+    if hexo-config('beautify.field') == 'site'
+      beautify()
+    else if hexo-config('beautify.field') == 'post'
+      &.post-content
+        beautify()
+
+  > :last-child
+    margin-bottom: 0 !important
+
+#post
+  +maxWidth768()
+    background: var(--anzhiyu-background) !important;
+    border: none;
+  #article-container
+    h2
+      if hexo-config("h2Divider")
+        border-top: 1px dashed var(--anzhiyu-theme-op);
+        padding-top: 1.5rem;
+        margin-top: 1.5rem;
+  .post_share
+    margin: 8px 0 0
+    width: fit-content
+    min-width 205px
+  .tag_share
+    display: flex
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    .post-meta
+      &__box
+        display: flex
+        flex-direction: column;
+        width: 100%;
+        
+        &__tag-list,&__category-list
+          display: flex
+          width: 100%;
+          flex-wrap: wrap;
+
+        &__tags,&__categoryes
+          display: flex
+          align-items: center
+          justify-content: center
+          padding: 4px 12px
+          width: fit-content
+          border-radius: 8px
+          font-size: .85em
+          transition: all .2s ease-in-out
+          +maxWidth768()
+            margin: 4px 8px 4px 0 !important
+        &__tags
+          margin: 0px 8px 0px 0
+        &__categoryes
+          margin: 0px 8px 4px 0
+          &:hover
+            background: $light-blue
+            color: var(--white)
+
+
+
+      .social-share
+        font-size: .85em
+
+        .social-share-icon
+          margin: 0 4px
+          width: w = 1.85em
+          height: w
+          font-size: 1.2em
+          line-height: w
+
+  .post-copyright
+    background: var(--anzhiyu-secondbg);
+    padding: 1rem 1.3rem;
+    border: var(--style-border);
+    border-width: 1px;
+    transition: 0.3s;
+    position: relative;
+    margin: 80px 0 30px;
+    border-radius: 12px;
+    .copyright-cc-box
+      position: absolute;
+      right: 0;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      pointer-events: none;
+    &__author_box
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      margin-top: 1.5rem;
+      .post-copyright__author_img
+        width: 66px;
+        height: 66px;
+        margin: auto;
+        border-radius: 66px;
+        overflow: hidden;
+        position: absolute;
+        left: calc(50% - 33px);
+        top: -33px;
+        border: var(--style-border-always);
+        box-shadow: var(--anzhiyu-shadow-main);
+        &:hover
+          img.post-copyright__author_img_back
+            z-index: 21;
+            transform: translateY(0px);
+          if hexo-config('post_copyright.avatarSinks')
+            img.post-copyright__author_img_front
+              transform: translateY(3px);
+
+        img.post-copyright__author_img_front
+          z-index: 20;
+          transition: .3s
+
+        img.post-copyright__author_img_back
+          border-radius: 66px;
+          z-index: 10;
+          transition: .3s
+        img
+          position: absolute;
+          bottom: 0;
+          left: 0;
+
+      .post-copyright__author_name
+        text-align: center;
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--anzhiyu-fontcolor);
+        line-height: 1;
+      .post-copyright__author_desc
+          text-align: center;
+          font-size: 14px;
+          color: var(--anzhiyu-secondtext);
+          margin-top: 4px;
+
+    &__post__info
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0.2rem;
+    &__original,&__reprint
+      background: var(--anzhiyu-main);
+      color: var(--anzhiyu-wihite-font);
+      padding: 0.2rem 1rem;
+      font-size: .8rem;
+      border-radius: 8px;
+      margin-right: 0.5rem;
+      font-weight: bold;
+      line-height: 1.5;
+      white-space: nowrap;
+      user-select: none;
+  
+    .anzhiyufont.anzhiyu-icon-copyright
+      position: absolute
+      font-size: 1.3em
+      top: -71px;
+      right: -20px;
+      font-size: 8.3em;
+      z-index: -1;
+      color: var(--anzhiyu-main)
+      @media screen and (min-width: 1365px)
+        z-index: 0;
+
+    &-title
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-weight: 500
+      max-width: 70%;
+      span
+        cursor pointer
+      
+      &:hover
+        color: var(--anzhiyu-fontcolor)
+    .post-copyright__notice
+      font-size: 12px;
+      .post-copyright-info
+        padding-left: 0;
+        color: var(--anzhiyu-secondtext);
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        text-align: center;
+        +maxWidth768()
+          -webkit-line-clamp: 2;
+        a
+          &:hover
+            color: var(--anzhiyu-main)
+
+  .post-outdate-notice
+    position: relative
+    margin: 0 0 20px
+    padding: .5em 1.2em
+    border-radius: 3px
+    background-color: $noticeOutdate-bg
+    color: $noticeOutdate-color
+
+    if hexo-config('noticeOutdate.style') == 'flat'
+      padding: .5em 1em .5em 2.6em
+      border-left: 5px solid $noticeOutdate-border
+
+      &:before
+        if hexo-config('icons.fontawesome')
+          @extend .fontawesomeIcon
+          content: '\f071'
+        else
+          @extend .anzhiyufont
+          content: '\e66f'
+        position: absolute
+        top: 50%
+        left: .9em
+        color: $noticeOutdate-border
+        transform: translateY(-50%)
+
+  .ads-wrap
+    margin: 40px 0
+
+  #content-inner.layout #article-container
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6
+      padding-left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: row-reverse;
+.post-ai-description
+  background: var(--anzhiyu-secondbg);
+  border-radius: 12px;
+  padding: 12px 16px;
+  line-height: 1.3;
+  border: var(--style-border-always);
+  margin-bottom: 10px;
+
+.ai-title
+  display: flex;
+  color: var(--font-color);
+  border-radius: 8px;
+  align-items: center;
+  padding: 0 5px;
+  i
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 20px;
+    height 20px
+  .anzhiyufont.anzhiyu-icon-circle-dot
+    margin-left: auto;
+    margin-right: 4px;
+    font-size: 14px;
+    opacity: 0;
+    &:active
+      transform: scale(0.97);
+  .anzhiyufont.anzhiyu-icon-arrow-rotate-right
+    font-size: 14px;
+    margin-left: 4px
+    cursor pointer
+
+  .ai-title-text
+    font-weight: bold;
+    margin-left: 8px;
+
+#ai-tag
+  font-size: 12px;
+  background-color: var(--anzhiyu-lighttext);
+  color: rgba(255, 255, 255, 0.9);
+  border-radius: 4px;
+  line-height: 1;
+  padding: 4px 5px;
+  cursor pointer
+#ai-Toggle 
+  font-size: 12px;
+  background: var(--anzhiyu-lighttext);
+  color: var(--anzhiyu-card-bg);
+  padding: 4px;
+  border-radius: 4px;
+  margin-left: 6px;
+  transform: scale(0.8);
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: bold;
+  &:hover
+    background: var(--anzhiyu-fontcolor);
+    color: var(--anzhiyu-card-bg);
+
+
+#go-tianli-blog
+  display: none
+.ai-explanation
+  margin-top: 12px;
+  padding: 8px 12px;
+  background: var(--anzhiyu-card-bg);
+  border-radius: 8px;
+  border: var(--style-border-always);
+  font-size: 15px;
+  line-height: 1.4;
+
+.ai-cursor
+  display: inline-block;
+  width: 7px;
+  background: #333;
+  height: 16px;
+  margin-bottom: -2px;
+  opacity: 0.95;
+  margin-left: 3px;
+  transition: all 0.3s;
+
+[data-theme="dark"] .ai-cursor
+  background: rgb(255, 255, 255, 0.9);
+
+.ai-btn-box
+  font-size: 15.5px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+.ai-btn-item
+  padding: 5px 10px;
+  margin: 10px 16px 0px 5px;
+  width: fit-content;
+  line-height: 1;
+  background: var(--anzhiyu-main)
+  color: #fff;
+  border-radius: 6px;
+  user-select: none;
+  transition: all 0.3s;
+  cursor: pointer;
+  &:hover
+    background: var(--anzhiyu-theme);
+
+.ai-recommend
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  .ai-recommend-item
+    width: calc(50% - 20px);
+    margin: 10px;
+    background: var(--anzhiyu-secondbg);
+    border-radius: 4px;
+    padding: 10px;
+    cursor pointer
+    transition: .3s;
+    animation: slide-in 0.6s 0.1s backwards;
+    span.index
+      padding: 4px
+    &:hover
+      color: var(--anzhiyu-white);
+      background: var(--anzhiyu-theme);
+      a
+        color: var(--anzhiyu-white);
+
++maxWidth768()
+  .ai-btn-box
+    justify-content: center;
+  .ai-recommend .ai-recommend-item
+    width: 100%;

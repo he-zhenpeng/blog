@@ -1,0 +1,422 @@
+.limit-one-line
+  overflow: hidden
+  text-overflow: ellipsis
+  white-space: nowrap
+
+.limit-more-line
+  display: -webkit-box
+  overflow: hidden
+  -webkit-box-orient: vertical
+
+.fontbold
+  font-weight: bold
+
+.anzhiyu-icon-spinner
+  margin: 0
+  width: 16px;
+  line-height: 16px;
+  height: 16px;
+if hexo-config('icons.fontawesome')
+  .fontawesomeIcon
+    display: inline-block
+    font-weight: 600
+    font-family: 'Font Awesome 6 Free'
+    text-rendering: auto
+    -webkit-font-smoothing: antialiased
+
+.anzhiyufont
+  font-family: "anzhiyufont";
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+.anzhiyufont::before
+  font-family: "anzhiyufont" !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+// card hover
+.cardHover
+  border-radius: 8px
+  background: var(--card-bg)
+  box-shadow: var(--card-box-shadow)
+  transition: all .3s
+
+.imgHover
+  width: 100%
+  height: 100%
+  transition: filter 375ms ease-in .2s, transform .6s
+  object-fit: cover
+
+  &:hover
+    transform: scale(1.1)
+
+.postImgHover
+  &:hover
+    img
+      opacity: .8
+      transform: scale(1.1)
+
+  img
+    position: absolute
+    width: 100%
+    height: 100%
+    opacity: .4
+    transition: all .6s, filter 375ms ease-in .2s
+    object-fit: cover
+    border-radius: 0;
+
+.list-beauty
+  list-style: none
+
+  li
+    position: relative
+    padding: .12em .4em .12em 1.4em
+
+    &:hover
+      &:before
+        border-color: var(--pseudo-hover)
+
+    &:before
+      position: absolute
+      top: .67em
+      left: 0
+      width: w = .43em
+      height: h = w
+      border: .5 * w solid $light-blue
+      border-radius: w
+      background: transparent
+      content: ''
+      cursor: pointer
+      transition: all .3s ease-out
+
+schemeDark()
+  @media (prefers-color-scheme: dark)
+    {block}
+schemeLight()
+  @media (prefers-color-scheme: light)
+    {block}
+maxWidth500()
+  @media screen and (max-width: 500px)
+    {block}
+
+maxWidth600()
+  @media screen and (max-width: 600px)
+    {block}
+
+maxWidth768()
+  @media screen and (max-width: 768px)
+    {block}
+
+minWidth768()
+  @media screen and (min-width: 768px)
+    {block}
+
+maxWidth1200()
+  @media screen and (max-width: 1200px)
+    {block}
+
+maxWidth1400()
+  @media screen and (max-width: 1400px)
+    {block}
+
+maxWidth900()
+  @media screen and (max-width: 900px)
+    {block}
+
+minWidth901()
+  @media screen and (min-width: 901px)
+    {block}
+
+minWidth900()
+  @media screen and (min-width: 900px)
+    {block}
+
+minWidth1200()
+  @media screen and (min-width: 1200px)
+    {block}
+minWidth2000()
+  @media screen and (min-width: 2000px)
+    {block}
+maxHeight680()
+  @media screen and (max-height: 680px)
+    {block}
+maxHeight580()
+  @media screen and (max-height: 580px)
+    {block}
+
+.scroll-down-effects
+  animation: scroll-down-effect 1.5s infinite
+.anzhiyu-spin
+  display: inline-block
+  transform-origin: 50% 50%;
+  animation-name: anzhiyu-spin;
+  animation-duration: var(--anzhiyu-animation-duration,2s);
+  animation-iteration-count: var(--anzhiyu-animation-iteration-count,infinite);
+  animation-timing-function: var(--anzhiyu-animation-timing,linear);
+
+
+.anzhiyu-pulse-icon
+  animation: anzhiyu-pulse-animation 1s infinite linear;
+
+.anzhiyu-shake:hover {
+  animation: shake 0.8s;
+}
+
+if hexo-config('avatar.effect') == true
+  .avatar-img
+    animation: avatar_turn_around 2s linear infinite
+
+.reward-main
+  animation: donate_effcet .3s .1s ease both
+
+@keyframes anzhiyu-shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+@keyframes anzhiyu-pulse-animation {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes anzhiyu-spin
+  0%
+    transform: rotate(0deg);
+  100% 
+    transform: rotate(1turn);
+
+@keyframes scroll-down-effect
+  0%
+    top: 0
+    opacity: .4
+
+  50%
+    top: -16px
+    opacity: 1
+
+  100%
+    top: 0
+    opacity: .4
+
+@keyframes header-effect
+  0%
+    opacity: 0
+    transform: translateY(-50px)
+
+  100%
+    opacity: 1
+    transform: translateY(0)
+
+@keyframes headerNoOpacity
+  0%
+    transform: translateY(-50px)
+
+  100%
+    transform: translateY(0)
+
+@keyframes bottom-top
+  0%
+    margin-top: 50px
+    opacity: 0
+
+  100%
+    margin-top: 0
+    opacity: 1
+
+@keyframes titleScale
+  0%
+    opacity: 0
+    transform: scale(.7)
+
+  100%
+    opacity: 1
+    transform: scale(1)
+
+@keyframes search_close
+  0%
+    opacity: 1
+    transform: translateY(0)
+
+  100%
+    opacity: 0
+    transform: translateY(20px)
+
+@keyframes to_show
+  0%
+    opacity: 0
+
+  100%
+    opacity: 1
+
+@keyframes to_hide
+  0%
+    opacity: 1
+
+  100%
+    opacity: 0
+
+@keyframes ribbon_to_show
+  0%
+    opacity: 0
+
+  100%
+    opacity: hexo-config('canvas_ribbon.alpha')
+
+@keyframes avatar_turn_around
+  from
+    transform: rotate(0)
+
+  to
+    transform: rotate(360deg)
+
+@keyframes donate_effcet
+  0%
+    opacity: 0
+    transform: translateY(-20px)
+
+  100%
+    opacity: 1
+    transform: translateY(0)
+
+@keyframes sidebarItem
+  0%
+    transform: translateX(200px)
+
+  100%
+    transform: translateX(0)
+
+@keyframes sidebarItem
+  0%
+    transform: translateY(0);
+    opacity: 1;
+  100%
+    transform: translateY(20px);
+    opacity: 0;
+
+@keyframes barrageIn {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes barrageOut {
+  0% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+}
+
+@keyframes toLeftFull
+  0%
+    transform: translateX(200%)
+
+  100%
+    transform: translateX(0)
+
+@keyframes toRightFull
+  0%
+    transform: translateX(0)
+
+  100%
+    transform: translateX(200%)
+
+@keyframes breathe
+  0% 
+    transform: scale(.97);
+  50%
+    transform: scale(1.1);
+  100%
+    transform: scale(.97);
+
+@keyframes animate-in-and-out
+  entry 0%
+    opacity: 0.5;
+    transform: scaleX(0.9);
+
+  entry 100%
+    opacity: 1;
+    transform: scaleX(1);
+
+@keyframes header
+  entry 0% {
+    --anzhiyu-header-translateY: 160px
+    --anzhiyu-header-info-scale: 0.7
+    --anzhiyu-header-cover-scale: 1
+  }
+
+  entry 100% {
+    --anzhiyu-header-translateY: 0px
+    --anzhiyu-header-info-scale: 1
+      --anzhiyu-header-cover-scale: 2
+  }
+  exit 100% {
+    --anzhiyu-header-translateY: 160px
+    --anzhiyu-header-info-scale: 0.7
+      --anzhiyu-header-cover-scale: 1
+  }
+
+  exit 0% {
+    --anzhiyu-header-translateY: 0px
+    --anzhiyu-header-info-scale: 1
+      --anzhiyu-header-cover-scale: 2
+  }
+
+@keyframes post-info-slide-in
+  0%
+    transform: scale(var(--anzhiyu-header-info-scale)) translateY(20px);
+    opacity: 0;
+  100%
+    transform: scale(var(--anzhiyu-header-info-scale)) translateY(0);
+    opacity: 1;
+
+@property --anzhiyu-header-translateY
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+
+@property --anzhiyu-header-info-scale
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+
+@property  --anzhiyu-header-cover-scale
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 2;
+
+@keyframes slide-in
+  0%
+    transform: translateY(20px);
+    opacity: 0;
+  100%
+    transform: translateY(0);
+    opacity: 1;
+
+@keyframes floating
+  0%
+    transform: translate(0,-4px);
+  50%
+    transform: translate(0,4px);
+  100%
+    transform: translate(0,-4px);

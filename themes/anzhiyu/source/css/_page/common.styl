@@ -1,0 +1,81 @@
+.post .layout#content-inner
+  +maxWidth768()
+    background: var(--anzhiyu-main);
+#body-wrap
+  display: flex
+  flex-direction: column
+  min-height: 100vh
+  justify-content: space-between;
+  +maxWidth768()
+    .layout
+      padding: 0;
+    #archive
+      background: var(--anzhiyu-background)
+      border: none
+      padding-top: 0px
+  
+.layout
+  display: flex
+  flex: 1 auto
+  margin: 0 auto
+  padding: 1.25rem 1.5rem
+  max-width: 1200px
+  width: 100%
+  justify-content: center;
+
+  +maxWidth1200()
+    flex-direction: column
+    padding-top: 10px
+
+  +maxWidth768()
+    padding: 20px 15px;
+    z-index: 3
+
+  +minWidth2000()
+    max-width: 1700px
+
+  & > div:first-child:not(.recent-posts)
+    box-shadow: var(--anzhiyu-shadow-border);
+    padding: 2rem 2.5rem;
+    border-radius: 12px;
+    background: var(--anzhiyu-card-bg);
+    border: var(--style-border);
+    width: calc(100% - 300px);
+    align-self: flex-start;
+    animation: slide-in 0.6s 0.1s backwards;
+
+    +maxWidth768()
+      padding: 1rem 1rem;
+      box-shadow: none;
+      background: var(--anzhiyu-background);
+
+  & > div:first-child
+    width: calc(100% - 300px)
+    transition: all .3s ease 0s
+
+    +maxWidth900()
+      width: 100% !important
+
+    if hexo-config('aside.position') == 'left'
+      +minWidth900()
+        order: 2
+
+  // 隱藏aside
+  &.hide-aside
+    max-width: 1000px
+
+    +minWidth2000()
+      max-width: 1200px
+
+    & > div
+      width: 100% !important
+
+// for apple device
+.apple
+  #page-header.full_page
+    background-attachment: scroll !important
+
+  .recent-post-item,
+  .avatar-img,
+  .flink-item-icon
+    transform: translateZ(0)

@@ -1,0 +1,407 @@
+#recent-posts
+  & > .recent-post-item:not(:first-child)
+    margin-top: 20px
+    animation: slide-in 0.6s 0.4s backwards;
+    will-change: transform;
+    +maxWidth768()
+      margin: 20px 20px 0
+  & > .recent-post-item
+    @extend .cardHover
+    display: flex
+    flex-direction: row
+    align-items: center
+    overflow: hidden
+    height: 18em
+    position: relative
+    border-radius: 12px;
+    box-shadow: none;
+    transition: all 0.3s ease 0s;
+    .recent-post-info-top-tips
+      display: flex;
+      margin-top: 20px;
+
+    .unvisited-post 
+      display: flex;
+      color: var(--anzhiyu-secondtext);
+      font-size: .75rem;;
+      position: relative;
+      &:visited
+        color: var(--anzhiyu-card-bg);
+    .recent-post-info
+      margin-top: 0px;
+      position: relative;
+      .recent-post-info-top
+        position: relative;
+        transition: .3s;
+        padding: 0 32px;
+        width: 100%;
+        .article-categories-original
+          display: flex;
+          color: var(--anzhiyu-secondtext);
+          font-size: .75rem;;
+          position: relative;
+          margin-right: 8px;
+        .newPost 
+          display: flex;
+          color: var(--anzhiyu-secondtext);
+          font-size: .75rem;;
+          position: relative;
+          margin-right: 8px;
+      .article-title
+        font-size: 20px;
+        -webkit-line-clamp: 2;
+        line-height: 30px;
+        margin-top: 0;
+        font-weight: 700;
+        color: var(--anzhiyu-fontcolor);
+        margin-bottom: 0;
+        width: 100%;
+        transition: .3s;
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+
+        +maxWidth768()
+          if hexo-config("post_meta.page.date_type") == 'both'
+            // -webkit-line-clamp: 1 !important;
+            line-height: 23px;
+          font-size: 19px;
+
+    +maxWidth768()
+      flex-direction: column
+      height: auto
+      &.lastestpost-item
+        margin-top: 10px !important;
+
+    &:hover
+      img.post_bg
+        filter: brightness(0.82) !important;
+        transform: scale(1.03) !important
+        transition: 0.3s ease-in-out;
+
+    &.ads-wrap
+      display: block !important
+      height: auto !important
+
+    .post_cover
+      overflow: hidden
+      width: 70%
+      height: 200px;
+
+      +maxWidth768()
+        width: 100%
+        height: 200px
+
+      img.post_bg
+        border-radius: 0px
+        height 100%
+        width 100%
+        transition: all 0.6s ease 0s;
+        object-fit: cover;
+
+      &.right
+        order: 1
+
+        +maxWidth768()
+          order: 0
+    & >.recent-post-info
+      height: 174px;
+      width: 100%;
+      cursor: pointer;
+      position: relative;
+      padding: 0;
+      display: inline-block;
+      overflow: hidden;
+      .sticky-warp
+        line-height: 23px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 8px
+
+        .sticky
+          color: $sticky-color
+          font-size: 12px;
+      +maxWidth768()
+        width: 100%
+        min-height: 140px;
+      &.no-cover
+        width: 100%
+
+        +maxWidth768()
+          padding: 30px 20px
+        &:hover
+          color: $text-hover
+
+      & > .article-meta-wrap
+        color: var(--anzhiyu-fontcolor);
+        font-size: .7rem;
+        position: absolute;
+        padding: 0 32px;
+        transition: .3s;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        width: 100%;
+        left: 0;
+
+        if hexo-config("post_meta.page.date_type") == 'both'
+          flex-direction: column;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          bottom: 0px;
+          +maxWidth768()
+            bottom: 20px;
+        else 
+          flex-direction: row-reverse
+          align-items: center
+          bottom: 30px;
+        .article-meta
+          if hexo-config("post_meta.page.date_type") != 'both'
+            margin: 0 8px 0 0;
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+            text-overflow: ellipsis;
+
+        & > .post-meta-date
+          color: var(--anzhiyu-fontcolor);
+          font-size: .875rem;
+          white-space: nowrap;
+          if hexo-config("post_meta.page.date_type") == 'both'
+            overflow: hidden;
+            display: inline-block;
+            text-overflow: ellipsis;
+          
+          +maxWidth500()
+            font-size: 13px
+
+        i
+          margin: 0 4px 0 0
+
+        .article-meta-label
+          if hexo-config('post_meta.page.label')
+            padding-right: 4px
+          else
+            display: none
+
+        .article-meta-separator
+          margin: 0 6px
+
+        .article-meta-link
+          margin: 0 4px
+
+        if hexo-config('post_meta.page.date_format') == 'relative'
+          time
+            display: none
+
+        a
+          color: $theme-meta-color
+          font-size: 14px
+          margin-right: 4px
+          span
+            pointer-events: none
+
+          &:hover
+            color: $text-hover
+
+      & > .content
+        @extend .limit-more-line
+        -webkit-line-clamp: 2
+
+#topPostGroup
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 10px;
+  height: 128px;
+  align-content: space-between;
+  width: 100%;
+#home_top
+  margin: 0 auto 0;
+  padding: 0px 1.5rem 0px;
+  max-width: 1400px;
+  width: 100%;
+  animation: slide-in 0.6s 0.1s backwards;
+  overflow: hidden;
+
++maxWidth768()
+  #topPostGroup
+    height: 240px;
+  #swiper_container_blog
+    padding: 10px;
+  #home_top
+    padding: 0px 20px 0px;
+  
+  
+if hexo-config('home_top.swiper.enable') == true
+  div#bannerGroup
+      margin-right: 10px;
+      width: calc(51% - 10px) !important;
+  +maxWidth768()
+    #home_top
+      padding: 0px 15px;
+    #topPostGroup 
+      height: 280px;
+    #swiper_container_blog
+      padding: 0 10px;
+  +maxWidth1200()
+    div#bannerGroup {
+      display: none !important;
+    }
+
+if hexo-config('article_double_row') == true
+  #content-inner #recent-posts > .recent-post-item > .recent-post-info > .content
+    opacity: 0;
+    height: 0;
+  +maxWidth1200()
+    #recent-posts > .recent-post-item >.recent-post-info > .article-title
+      line-height: 30px;
+      font-weight: bold;
+      color: var(--anzhiyu-fontcolor);
+      width: 100%;
+      transition: .3s;
+      font-size: 1.2rem;
+      -webkit-line-clamp: 2;
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+  +maxWidth768()
+    #content-inner #recent-posts > .recent-post-item > .recent-post-info > .content
+      opacity: 0;
+      height: 0;
+  @media screen and (min-width: 1201px)
+    #recent-posts
+      align-content: flex-start
+      display: flex
+      flex-wrap: wrap
+      justify-content: space-between
+
+      &>.recent-post-item
+        margin-top: 1rem
+        display: flex
+        height: auto
+        width: 49%
+        .recent-post-info
+          .content
+            display: none
+        .post_cover
+          width: 100%
+          height: 225px
+          transition: 1s !important;
+          
+          img.post_bg
+            width: 100%
+            height: 100%
+
+        -webkit-flex-direction: column
+        -ms-flex-direction: column
+        flex-direction: column
+
+        .left_radius
+          border-radius: 8px 8px 0 0
+
+        .right_radius
+          border-radius: 8px 8px 0 0
+
+        height: auto !important
+
+    @media screen and (max-width:768px)
+      #recent-posts>.recent-post-item
+        width: 100%
+
+      #recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator
+        display: none
+
+
+
+#content-inner #recent-posts > .recent-post-item > .recent-post-info > .content
+  transition: all 0.3s ease 0s;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-height: 1.4;
+  color: var(--anzhiyu-secondtext);
+  margin-top: 0.5rem;
+  font-size: 14px;
+  opacity 0
+  height 0
+
+#popup-window
+  min-width: 300px;
+  background: var(--anzhiyu-maskbgdeep);
+  color: var(--anzhiyu-fontcolor);
+  padding: 8px 16px;
+  display: flex;
+  flex-direction: column;
+  bottom: 20px;
+  right: 20px;
+  position: fixed;
+  border-radius: 12px;
+  transition: .3s;
+  z-index: 1002;
+  user-select: none;
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  transform: translateZ(0);
+  border: var(--style-border);
+  opacity 0
+  pointer-events: none
+  &.show-popup-window
+    animation: barrageIn .6s cubic-bezier(.42,0,.3,1.11);
+    opacity 1
+    pointer-events: all
+    cursor pointer
+  &.no-url:hover
+    background: var(--anzhiyu-maskbgdeep);
+    color: var(--anzhiyu-fontcolor);
+    border: var(--style-border);
+    cursor: pointer
+  &.no-url
+    .popup-window-content .popup-link
+      display: none
+  &:hover
+    background: var(--anzhiyu-main)
+    color: var(--anzhiyu-white)
+    border: var(--style-border-hover);
+    .popup-window-content .popup-link i
+      color: var(--anzhiyu-white)
+  &.popup-hide
+    opacity: 0;
+    animation: barrageOut .6s cubic-bezier(.42,0,.3,1.11);
+  .popup-window-title
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--anzhiyu-card-bg);
+    margin-right: 8px;
+    background: var(--anzhiyu-fontcolor);
+    line-height: 1;
+    padding: 4px;
+    border-radius: 4px;
+    width: fit-content;
+  .popup-window-divider
+    width 100%
+    border-bottom: var(--style-border);
+    margin-top: 6px;
+  .popup-window-content
+    font-size: 14px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .popup-link
+      margin-left: auto;
+      font-size: 16px;
+      i
+        font-size: 16px;
+body[data-type="post"]
+  #popup-window
+    top: 70px;
+    bottom: auto;
+    &.show-popup-window
+      animation: toLeftFull .6s cubic-bezier(.42,0,.3,1.11);
+      opacity 1
+    &.popup-hide
+      opacity: 0;
+      animation: toRightFull .6s cubic-bezier(.42,0,.3,1.11);

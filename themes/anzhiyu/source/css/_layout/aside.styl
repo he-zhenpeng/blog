@@ -1,0 +1,603 @@
+.post
+  +maxWidth768()
+    #aside-content
+      background: var(--anzhiyu-background);
+      border: none;
+      z-index 99
+      margin-top: -1px
+#aside-content
+  width: 300px
+  animation: slide-in 0.6s 0.3s backwards;
+
+  +minWidth1200()
+    if hexo-config('aside.position') == 'right'
+      padding-left: 15px
+    else
+      padding-right: 15px
+
+  +maxWidth1200()
+    width: 100%
+    padding: 20px;
+  
+  +maxWidth768()
+    padding: 0 20px 20px
+
+  > .card-widget:first-child
+    margin-top: 0
+
+    +maxWidth1200()
+      margin-top: 20px
+    +maxWidth768()
+      margin-top: 0px
+
+  .card-widget
+    @extend .cardHover
+    position: relative
+    overflow: hidden
+    margin-top: 20px
+    padding: 20px 24px
+
+    if hexo-config('aside.mobile') == false
+      +maxWidth768()
+        &:not(#card-toc)
+          display: none
+    .author-info__bottom-group
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      align-items: center;
+      .author-info__name
+        text-align: left;
+        font-weight: 700;
+        color: var(--anzhiyu-white);
+        font-size: 20px;
+        line-height: 1;
+        margin-bottom: 5px;
+        margin-top: 0
+      .author-info__desc
+        font-size: 12px;
+        color: var(--anzhiyu-white);
+        opacity: .6;
+        line-height: 1;
+
+    .author-info__description
+      position: absolute;
+      top: 50px;
+      width: 100%;
+      left: 0;
+      padding: 1rem 1.2rem;
+      opacity: 0;
+      transition: .3s;
+      color: var(--anzhiyu-white);
+
+    .banner-button-group .banner-button 
+      padding: 20px 12px;
+      color: var(--anzhiyu-white);
+      display: flex;
+      align-items: center;
+      z-index: 1;
+      transition: all 0.3s ease 0s;
+      cursor: pointer;
+      .anzhiyufont .anzhiyu-icon-arrow-circle-right 
+        font-size: 1.3rem;
+        margin-right: 10px;
+
+    .author-info-avatar 
+      user-select: none
+      img
+        filter: blur(0) brightness(1);
+      .author-status
+        position: absolute;
+        bottom: 2px;
+        right 2px
+        width: 33px;
+        height: 33px;
+        border-radius: 2em;
+        background-color: var(--anzhiyu-white);
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: .3s .2s;
+        transform: scale(1);
+        img
+          width: 26px;
+          height: 26px;
+          border-radius: 0px;
+          transition: 0s
+
+    .card-info-social-icons
+      margin: 0;
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: row;
+      flex-wrap: wrap;
+      cursor: pointer;
+
+      .social-icon
+        margin: 0 0 0 10px
+        color: var(--anzhiyu-fontcolor);
+        font-size: 1.4em;
+        cursor: pointer;
+        display: flex;
+        i, svg
+          background: var(--anzhiyu-white-op);
+          color: var(--anzhiyu-white);
+          font-size: 1rem;
+          width: 40px;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all .3s ease 0s;
+          padding: 8px;
+          border-radius: 32px;
+          &:hover
+            background: var(--anzhiyu-secondbg);
+            transform: scale(1.1);
+            color: var(--anzhiyu-main);
+            box-shadow: none;
+
+    #card-info-btn
+      display: block
+      margin-top: 14px
+      background-color: var(--btn-bg)
+      color: var(--btn-color)
+      text-align: center
+      line-height: 2.4
+
+      &:hover
+        background-color: var(--btn-hover-color)
+
+      span
+        padding-left: 10px
+
+  .item-headline
+    padding-bottom: 0;
+    margin-left: 8px;
+    font-size: 1em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+
+    span
+      margin-left: 6px
+
+  .sticky_layout
+    +minWidth1200()
+      position: sticky
+      position: -webkit-sticky
+      top: 20px
+      transition: top .3s
+
+  .card-tag-cloud
+    a
+      display: inline-block
+      padding: 0 4px
+
+      &:hover
+        color: $text-hover !important
+
+  .aside-list
+    & > span
+      display: block
+      margin-bottom: 10px
+      text-align: center
+
+    & > .aside-list-item
+      display: flex
+      align-items: center
+      padding: 6px 0
+
+      &:first-child
+        padding-top: 0
+
+      &:not(:last-child)
+        border-bottom: 1px dashed #f5f5f5
+
+      &:last-child
+        padding-bottom: 0
+
+      .thumbnail
+        overflow: hidden
+        width: w = 4.2em
+        height: w
+
+        & > img
+          @extend .imgHover
+
+      .content
+        flex: 1
+        padding-left: 10px
+        word-break: break-all
+        width: 4.2em;
+        height: 4.2em;
+
+        & > .name
+          @extend .limit-more-line
+          -webkit-line-clamp: 1
+
+        & > time,
+        & > .name
+          display: block
+          color: $theme-meta-color
+          font-size: 85%
+
+        & > .title,
+        & > .comment
+          @extend .limit-more-line
+          color: var(--font-color)
+          font-size: 95%
+          line-height: 1.5
+          -webkit-line-clamp: 2
+
+          &:hover
+            color: $text-hover
+
+      &.no-cover
+        min-height: 4.4em
+
+  .card-archives ul.card-archive-list,
+  .card-categories ul.card-category-list
+    margin: 0
+    padding: 0
+    list-style: none
+  .card-archives .item-headline
+    display: none
+
+  .card-archives ul.card-archive-list > .card-archive-list-item,
+  .card-categories ul.card-category-list > .card-category-list-item
+    a
+      display: flex
+      flex-direction: row
+      padding: 3px 10px
+      color: var(--font-color)
+      transition: all .2s
+
+      &:hover
+        background-color: var(--text-bg-hover)
+
+      span
+        @extend .limit-one-line
+
+        &:first-child
+          flex: 1
+
+  .card-categories
+    .card-category-list
+      &.child
+        padding: 0 0 0 16px
+
+      > .parent
+        > a
+          &.expand
+            i
+              transform: rotate(-90deg)
+
+            & + .child
+              display: block
+          .card-category-list
+            &-name
+              width: 70% !important
+
+            &-count
+              width: calc(100% - 70% - 20px)
+              text-align: right
+
+          i
+            float: right
+            margin-right: -.5em
+            padding: .5em
+            transition: transform .3s
+            transform: rotate(0)
+
+        if hexo-config('aside.card_categories.expand') == false
+          > .child
+            display: none
+
+  .card-webinfo
+    .item-headline
+      display: none
+    .webinfo
+      .webinfo-item
+        display: flex
+        align-items: center
+        padding: 2px 10px 0
+        justify-content: space-between;
+        .webinfo-item-title 
+          display: flex;
+          i
+            line-height: 2;
+            margin-right: 6px;
+            width: 16px;
+            text-align: center;
+
+        div
+          &:first-child
+            flex: 1
+            padding-right: 20px
+
+  // toc
+  #card-toc
+    +minWidth901()
+      right: 0 !important
+      max-height: calc(100vh - 100px);
+
+    +maxWidth1200()
+      position: fixed
+      right: 55px
+      bottom: 30px
+      z-index: 100
+      max-width: $toc-mobile-maxWidth
+      max-height: calc(100% - 60px)
+      width: $toc-mobile-width
+      transition: transform .3s
+      transform: scale(0)
+      transform-origin: right bottom
+      &.open
+        transform: scale(1)
+
+    .toc-percentage
+      display: none
+      float: right
+      margin-top: -9px
+      color: #a9a9a9
+      font-style: italic
+      font-size: 140%
+
+    .toc-content
+      overflow-y: scroll
+      overflow-y: overlay
+      margin: 0 -24px
+      max-height: calc(100vh - 120px)
+      width: calc(100% + 48px)
+
+      +maxWidth1200()
+        max-height: calc(100vh - 140px)
+
+      & > *
+        margin: 0 20px !important
+
+        & > .toc-item > .toc-child
+          margin-left: 10px
+          padding-left: 10px
+          // border-left: 1px solid var(--dark-grey)
+
+      &:not(.is-expand)
+        .toc-child
+          display: none
+
+          +maxWidth1200()
+            display: block !important
+
+        .toc-item
+          &.active
+            .toc-child
+              display: block
+
+      ol,
+      li
+        list-style: none
+
+      > ol
+        padding: 0 !important
+
+      ol
+        margin: 0
+        padding-left: 18px
+
+      .toc-link
+        display: block
+        margin: 4px 0
+        padding: 1px 6px
+        color: var(--toc-link-color)
+        transition: all .2s ease-in-out
+
+        &:hover
+          color: var(--anzhiyu-lighttext)
+
+        &.active
+          background: $theme-toc-color
+          color: $toc-active-color
+
+  :only-child
+    > .card-widget
+      margin-top: 0
+
+  .card-more-btn
+    float: right
+    color: inherit
+
+    &:hover
+      animation: more-btn-move 1s infinite
+
+  .card-announcement
+    .item-headline
+      i
+        color: #FF0000
+
+.avatar-img
+  width: 118px;
+  height 118px
+  right: 0;
+  top: 0;
+  border-radius: 500px;
+  object-fit: cover;
+  position: absolute;
+  opacity: 1;
+  transition: .3s;
+  border: var(--style-border-avatar);
+
+  img
+    width: 100%
+    height: 100%
+    transition: filter 375ms ease-in .2s, transform .3s
+    object-fit: cover
+
+.site-data
+  display: table
+  width: 100%
+  table-layout: fixed
+
+  & > a
+    display: table-cell
+
+    div
+      transition: all .3s
+
+    &:hover
+      div
+        color: $theme-color !important
+
+    .headline
+      @extend .limit-one-line
+      color: var(--font-color)
+
+    .length-num
+      margin-top: -.32em
+      color: var(--text-highlight-color)
+      font-size: 1.2em
+
+@keyframes more-btn-move
+  0%,
+  100%
+    transform: translateX(0)
+
+  50%
+    transform: translateX(3px)
+
+@keyframes toc-open
+  0%
+    transform: scale(.7)
+
+  100%
+    transform: scale(1)
+
+@keyframes toc-close
+  0%
+    transform: scale(1)
+
+  100%
+    transform: scale(.7)
+
++minWidth1200()
+  html.hide-aside
+    .layout
+      justify-content: center
+
+      > .aside-content
+        display: none
+
+      > div:first-child
+        width: 80%
++maxWidth1200()
+  .aside-content
+    max-width: none !important;
+    display: none
++maxWidth768()
+  .aside-content
+    display: block
+.page
+  .sticky_layout
+    display: flex
+    flex-direction: column
+
+  if hexo-config('aside.card_recent_post.sort_order')
+    .card-recent-post
+      order: hexo-config('aside.card_recent_post.sort_order')
+
+  if hexo-config('newest_comments.sort_order')
+    #card-newest-comments
+      order: hexo-config('newest_comments.sort_order')
+
+  if hexo-config('aside.card_categories.sort_order')
+    .card-categories
+      order: hexo-config('aside.card_categories.sort_order')
+
+  if hexo-config('aside.card_tags.sort_order')
+    .card-tags
+      order: hexo-config('aside.card_tags.sort_order')
+
+  if hexo-config('aside.card_archives.sort_order')
+    .card-archives
+      order: hexo-config('aside.card_archives.sort_order')
+
+  if hexo-config('aside.card_webinfo.sort_order')
+    .card-webinfo
+      order: hexo-config('aside.card_webinfo.sort_order')
+
+if hexo-config('aside.enable')
+  #aside-content
+    >.card-widget.card-info
+      background: var(--anzhiyu-card-bg);
+      box-shadow: var(--anzhiyu-shadow-black);
+      position: relative;
+      padding: 0;
+      +maxWidth768()
+        display: none;
+      > .card-content
+        padding: 1rem 1.2rem;
+        min-height: 320px;
+        position: relative;
+      &::before
+        background: linear-gradient(-25deg,var(--anzhiyu-main),var(--anzhiyu-main-op-deep),var(--anzhiyu-main),var(--anzhiyu-main-op-deep));
+        background-size: 400%;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        content: '';
+        animation: gradient 15s ease infinite;
+    .card-info
+      &:hover 
+        .author-info-avatar
+          opacity: 0;
+          transform: scale(0);
+        .author-info__description
+          opacity: 1;
+        .author-status
+          opacity: 0;
+          transform: scale(0);
+
+      .author-info-avatar
+        margin: 45px auto
+        display: flex
+        justify-content: center
+        width: 118px;
+        height: 118px;
+        transition: cubic-bezier(.69,.39,0,1.21) .3s;
+        transform-origin: bottom;
+        position: relative
+        +maxWidth768()
+          display: none
+      #author-info__sayhi 
+        text-align: left;
+        color: var(--anzhiyu-white);
+        background: var(--anzhiyu-white-op);
+        font-size: 12px;
+        margin: auto;
+        padding: 2px 8px;
+        border-radius: 12px;
+        width: fit-content;
+        cursor: pointer;
+        transition: 0.3s;
+        user-select: none
+        &:hover
+          background: var(--anzhiyu-card-bg);
+          color: var(--anzhiyu-fontcolor);
+          transform: scale(1.1);
+
+      .banner-button-group .banner-button
+        border-radius: 35px;
+        background: var(--anzhiyu-white-op);
+        &:hover
+          background: var(--anzhiyu-white);
+          color: var(--anzhiyu-black);
+
+[data-theme="dark"] #aside-content > .card-info
+  background: var(--anzhiyu-card-bg)
+
+@media screen and (max-width: 992px)
+  #aside-content > .card-info
+    background-size: 100% 70%
