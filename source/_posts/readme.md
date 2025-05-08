@@ -110,7 +110,7 @@ categories:
 ```
 [文字](链接)
 [文字](脚注解释 "脚注名字")
-![图片描述](/img/taikongren.jpg)
+![图片描述](/img/readme/taikongren.jpg)
 
 ```bash
 单行代码，如下：
