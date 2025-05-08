@@ -31,7 +31,7 @@ apt update && apt upgrade -y
 
 # 二、安装工作
 
-[webssh仓库地址](https://github.com/amclubs/webssh)
+[webssh仓库地址](https://github.com/he-zhenpeng/webssh)
 
 1. 下载webssh安装包命令：
 
