@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hexo</title>
+  <title>myBlog</title>
   
-  
+  <subtitle>welcom to myblog!</subtitle>
   <link href="https://he-zhenpeng.github.io/blog/atom.xml" rel="self"/>
   
   <link href="https://he-zhenpeng.github.io/blog/"/>
